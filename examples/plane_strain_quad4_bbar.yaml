@@ -1,0 +1,31 @@
+analysis:
+  dimension: 2D
+  type: static_plane_strain
+  unit_system: m-kN
+mesh:
+  generator: rectangle
+  x_range: [0.0, 10.0]
+  y_range: [0.0, 2.0]
+  nx: 8
+  ny: 2
+  element_type: QUAD4
+  integration: B-bar
+  material: soil
+materials:
+  soil:
+    model: elastic
+    E: 50000.0
+    nu: 0.33
+    gamma: 18.0
+boundary_conditions:
+  - set: left
+    ux: 0.0
+    uy: 0.0
+  - set: bottom
+    uy: 0.0
+loads:
+  - edge: ["9", "18"]
+    ty: -50.0
+output:
+  directory: runs/sample_quad4_bbar
+

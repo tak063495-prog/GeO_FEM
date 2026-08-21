@@ -1,0 +1,1631 @@
+﻿metadata:
+  id: sustainability_2024_case4_quad4_sri_auto_srm
+  name: Sustainability 2024 homogeneous slope Case 4 QUAD4 SRI Auto SRM
+  purpose: Auto SRM Case 4 reproduction with diagnostic failure classification and suspect-trial retry based on sustainability-16-00702.
+  units: m-kN
+  source: sustainability-16-00702.pdf, Section 3.1, Figure 3, Table 1 Case 4
+  notes:
+    - Geometry follows Figure 3: 20 m base, 10 m left height, 4 m right bench height, 10 m crest, 45 degree slope.
+    - Case 4 material follows Table 1: c=20 kPa, phi=35 degrees; E=14 MPa, nu=0.3, gamma=20 kN/m3, dilation=0 degrees.
+    - Mesh is a QUAD4 SRI starter mesh; element size is refined from about 2.0 m to about 0.5 m.
+    - Published FOS reference values are about 2.24 to 2.34; eSPFEM in the paper reports 2.27.
+    - Accurate FOS tuning uses factor_tol=0.005, failure_plastic_ratio=1.0, and larger Newton/cutback allowance.
+    - SRM trial diagnostics are written to analysis_log.json/csv/html, run.log, and report SRM trial tables.
+    - Trial diagnostics include plastic_ratio_delta, equivalent plastic strain statistics, yielded element count, connected plastic cluster size, boundary span, increment/cutback, Newton, residual, displacement, detJ, and work-ratio metrics.
+    - Auto SRM classifies each failed trial as confirmed_failure or suspect_failure from log diagnostics and retries suspect failures with stronger increment/Newton settings.
+analysis:
+  dimension: 2D
+  type: static_plane_strain
+  unit_system: m-kN
+  fields: [u]
+geometry:
+  units: m
+  polygon: [[0.0, 0.0], [20.0, 0.0], [20.0, 4.0], [16.0, 4.0], [10.0, 10.0], [0.0, 10.0]]
+  reference_points:
+    A: [10.0, 10.0]
+mesh:
+  nodes:
+    N1: [0.0, 0.0]
+    N2: [0.5, 0.0]
+    N3: [1.0, 0.0]
+    N4: [1.5, 0.0]
+    N5: [2.0, 0.0]
+    N6: [2.5, 0.0]
+    N7: [3.0, 0.0]
+    N8: [3.5, 0.0]
+    N9: [4.0, 0.0]
+    N10: [4.5, 0.0]
+    N11: [5.0, 0.0]
+    N12: [5.5, 0.0]
+    N13: [6.0, 0.0]
+    N14: [6.5, 0.0]
+    N15: [7.0, 0.0]
+    N16: [7.5, 0.0]
+    N17: [8.0, 0.0]
+    N18: [8.5, 0.0]
+    N19: [9.0, 0.0]
+    N20: [9.5, 0.0]
+    N21: [10.0, 0.0]
+    N22: [10.5, 0.0]
+    N23: [11.0, 0.0]
+    N24: [11.5, 0.0]
+    N25: [12.0, 0.0]
+    N26: [12.5, 0.0]
+    N27: [13.0, 0.0]
+    N28: [13.5, 0.0]
+    N29: [14.0, 0.0]
+    N30: [14.5, 0.0]
+    N31: [15.0, 0.0]
+    N32: [15.5, 0.0]
+    N33: [16.0, 0.0]
+    N34: [16.5, 0.0]
+    N35: [17.0, 0.0]
+    N36: [17.5, 0.0]
+    N37: [18.0, 0.0]
+    N38: [18.5, 0.0]
+    N39: [19.0, 0.0]
+    N40: [19.5, 0.0]
+    N41: [20.0, 0.0]
+    N42: [0.0, 0.5]
+    N43: [0.5, 0.5]
+    N44: [1.0, 0.5]
+    N45: [1.5, 0.5]
+    N46: [2.0, 0.5]
+    N47: [2.5, 0.5]
+    N48: [3.0, 0.5]
+    N49: [3.5, 0.5]
+    N50: [4.0, 0.5]
+    N51: [4.5, 0.5]
+    N52: [5.0, 0.5]
+    N53: [5.5, 0.5]
+    N54: [6.0, 0.5]
+    N55: [6.5, 0.5]
+    N56: [7.0, 0.5]
+    N57: [7.5, 0.5]
+    N58: [8.0, 0.5]
+    N59: [8.5, 0.5]
+    N60: [9.0, 0.5]
+    N61: [9.5, 0.5]
+    N62: [10.0, 0.5]
+    N63: [10.5, 0.5]
+    N64: [11.0, 0.5]
+    N65: [11.5, 0.5]
+    N66: [12.0, 0.5]
+    N67: [12.5, 0.5]
+    N68: [13.0, 0.5]
+    N69: [13.5, 0.5]
+    N70: [14.0, 0.5]
+    N71: [14.5, 0.5]
+    N72: [15.0, 0.5]
+    N73: [15.5, 0.5]
+    N74: [16.0, 0.5]
+    N75: [16.5, 0.5]
+    N76: [17.0, 0.5]
+    N77: [17.5, 0.5]
+    N78: [18.0, 0.5]
+    N79: [18.5, 0.5]
+    N80: [19.0, 0.5]
+    N81: [19.5, 0.5]
+    N82: [20.0, 0.5]
+    N83: [0.0, 1.0]
+    N84: [0.5, 1.0]
+    N85: [1.0, 1.0]
+    N86: [1.5, 1.0]
+    N87: [2.0, 1.0]
+    N88: [2.5, 1.0]
+    N89: [3.0, 1.0]
+    N90: [3.5, 1.0]
+    N91: [4.0, 1.0]
+    N92: [4.5, 1.0]
+    N93: [5.0, 1.0]
+    N94: [5.5, 1.0]
+    N95: [6.0, 1.0]
+    N96: [6.5, 1.0]
+    N97: [7.0, 1.0]
+    N98: [7.5, 1.0]
+    N99: [8.0, 1.0]
+    N100: [8.5, 1.0]
+    N101: [9.0, 1.0]
+    N102: [9.5, 1.0]
+    N103: [10.0, 1.0]
+    N104: [10.5, 1.0]
+    N105: [11.0, 1.0]
+    N106: [11.5, 1.0]
+    N107: [12.0, 1.0]
+    N108: [12.5, 1.0]
+    N109: [13.0, 1.0]
+    N110: [13.5, 1.0]
+    N111: [14.0, 1.0]
+    N112: [14.5, 1.0]
+    N113: [15.0, 1.0]
+    N114: [15.5, 1.0]
+    N115: [16.0, 1.0]
+    N116: [16.5, 1.0]
+    N117: [17.0, 1.0]
+    N118: [17.5, 1.0]
+    N119: [18.0, 1.0]
+    N120: [18.5, 1.0]
+    N121: [19.0, 1.0]
+    N122: [19.5, 1.0]
+    N123: [20.0, 1.0]
+    N124: [0.0, 1.5]
+    N125: [0.5, 1.5]
+    N126: [1.0, 1.5]
+    N127: [1.5, 1.5]
+    N128: [2.0, 1.5]
+    N129: [2.5, 1.5]
+    N130: [3.0, 1.5]
+    N131: [3.5, 1.5]
+    N132: [4.0, 1.5]
+    N133: [4.5, 1.5]
+    N134: [5.0, 1.5]
+    N135: [5.5, 1.5]
+    N136: [6.0, 1.5]
+    N137: [6.5, 1.5]
+    N138: [7.0, 1.5]
+    N139: [7.5, 1.5]
+    N140: [8.0, 1.5]
+    N141: [8.5, 1.5]
+    N142: [9.0, 1.5]
+    N143: [9.5, 1.5]
+    N144: [10.0, 1.5]
+    N145: [10.5, 1.5]
+    N146: [11.0, 1.5]
+    N147: [11.5, 1.5]
+    N148: [12.0, 1.5]
+    N149: [12.5, 1.5]
+    N150: [13.0, 1.5]
+    N151: [13.5, 1.5]
+    N152: [14.0, 1.5]
+    N153: [14.5, 1.5]
+    N154: [15.0, 1.5]
+    N155: [15.5, 1.5]
+    N156: [16.0, 1.5]
+    N157: [16.5, 1.5]
+    N158: [17.0, 1.5]
+    N159: [17.5, 1.5]
+    N160: [18.0, 1.5]
+    N161: [18.5, 1.5]
+    N162: [19.0, 1.5]
+    N163: [19.5, 1.5]
+    N164: [20.0, 1.5]
+    N165: [0.0, 2.0]
+    N166: [0.5, 2.0]
+    N167: [1.0, 2.0]
+    N168: [1.5, 2.0]
+    N169: [2.0, 2.0]
+    N170: [2.5, 2.0]
+    N171: [3.0, 2.0]
+    N172: [3.5, 2.0]
+    N173: [4.0, 2.0]
+    N174: [4.5, 2.0]
+    N175: [5.0, 2.0]
+    N176: [5.5, 2.0]
+    N177: [6.0, 2.0]
+    N178: [6.5, 2.0]
+    N179: [7.0, 2.0]
+    N180: [7.5, 2.0]
+    N181: [8.0, 2.0]
+    N182: [8.5, 2.0]
+    N183: [9.0, 2.0]
+    N184: [9.5, 2.0]
+    N185: [10.0, 2.0]
+    N186: [10.5, 2.0]
+    N187: [11.0, 2.0]
+    N188: [11.5, 2.0]
+    N189: [12.0, 2.0]
+    N190: [12.5, 2.0]
+    N191: [13.0, 2.0]
+    N192: [13.5, 2.0]
+    N193: [14.0, 2.0]
+    N194: [14.5, 2.0]
+    N195: [15.0, 2.0]
+    N196: [15.5, 2.0]
+    N197: [16.0, 2.0]
+    N198: [16.5, 2.0]
+    N199: [17.0, 2.0]
+    N200: [17.5, 2.0]
+    N201: [18.0, 2.0]
+    N202: [18.5, 2.0]
+    N203: [19.0, 2.0]
+    N204: [19.5, 2.0]
+    N205: [20.0, 2.0]
+    N206: [0.0, 2.5]
+    N207: [0.5, 2.5]
+    N208: [1.0, 2.5]
+    N209: [1.5, 2.5]
+    N210: [2.0, 2.5]
+    N211: [2.5, 2.5]
+    N212: [3.0, 2.5]
+    N213: [3.5, 2.5]
+    N214: [4.0, 2.5]
+    N215: [4.5, 2.5]
+    N216: [5.0, 2.5]
+    N217: [5.5, 2.5]
+    N218: [6.0, 2.5]
+    N219: [6.5, 2.5]
+    N220: [7.0, 2.5]
+    N221: [7.5, 2.5]
+    N222: [8.0, 2.5]
+    N223: [8.5, 2.5]
+    N224: [9.0, 2.5]
+    N225: [9.5, 2.5]
+    N226: [10.0, 2.5]
+    N227: [10.5, 2.5]
+    N228: [11.0, 2.5]
+    N229: [11.5, 2.5]
+    N230: [12.0, 2.5]
+    N231: [12.5, 2.5]
+    N232: [13.0, 2.5]
+    N233: [13.5, 2.5]
+    N234: [14.0, 2.5]
+    N235: [14.5, 2.5]
+    N236: [15.0, 2.5]
+    N237: [15.5, 2.5]
+    N238: [16.0, 2.5]
+    N239: [16.5, 2.5]
+    N240: [17.0, 2.5]
+    N241: [17.5, 2.5]
+    N242: [18.0, 2.5]
+    N243: [18.5, 2.5]
+    N244: [19.0, 2.5]
+    N245: [19.5, 2.5]
+    N246: [20.0, 2.5]
+    N247: [0.0, 3.0]
+    N248: [0.5, 3.0]
+    N249: [1.0, 3.0]
+    N250: [1.5, 3.0]
+    N251: [2.0, 3.0]
+    N252: [2.5, 3.0]
+    N253: [3.0, 3.0]
+    N254: [3.5, 3.0]
+    N255: [4.0, 3.0]
+    N256: [4.5, 3.0]
+    N257: [5.0, 3.0]
+    N258: [5.5, 3.0]
+    N259: [6.0, 3.0]
+    N260: [6.5, 3.0]
+    N261: [7.0, 3.0]
+    N262: [7.5, 3.0]
+    N263: [8.0, 3.0]
+    N264: [8.5, 3.0]
+    N265: [9.0, 3.0]
+    N266: [9.5, 3.0]
+    N267: [10.0, 3.0]
+    N268: [10.5, 3.0]
+    N269: [11.0, 3.0]
+    N270: [11.5, 3.0]
+    N271: [12.0, 3.0]
+    N272: [12.5, 3.0]
+    N273: [13.0, 3.0]
+    N274: [13.5, 3.0]
+    N275: [14.0, 3.0]
+    N276: [14.5, 3.0]
+    N277: [15.0, 3.0]
+    N278: [15.5, 3.0]
+    N279: [16.0, 3.0]
+    N280: [16.5, 3.0]
+    N281: [17.0, 3.0]
+    N282: [17.5, 3.0]
+    N283: [18.0, 3.0]
+    N284: [18.5, 3.0]
+    N285: [19.0, 3.0]
+    N286: [19.5, 3.0]
+    N287: [20.0, 3.0]
+    N288: [0.0, 3.5]
+    N289: [0.5, 3.5]
+    N290: [1.0, 3.5]
+    N291: [1.5, 3.5]
+    N292: [2.0, 3.5]
+    N293: [2.5, 3.5]
+    N294: [3.0, 3.5]
+    N295: [3.5, 3.5]
+    N296: [4.0, 3.5]
+    N297: [4.5, 3.5]
+    N298: [5.0, 3.5]
+    N299: [5.5, 3.5]
+    N300: [6.0, 3.5]
+    N301: [6.5, 3.5]
+    N302: [7.0, 3.5]
+    N303: [7.5, 3.5]
+    N304: [8.0, 3.5]
+    N305: [8.5, 3.5]
+    N306: [9.0, 3.5]
+    N307: [9.5, 3.5]
+    N308: [10.0, 3.5]
+    N309: [10.5, 3.5]
+    N310: [11.0, 3.5]
+    N311: [11.5, 3.5]
+    N312: [12.0, 3.5]
+    N313: [12.5, 3.5]
+    N314: [13.0, 3.5]
+    N315: [13.5, 3.5]
+    N316: [14.0, 3.5]
+    N317: [14.5, 3.5]
+    N318: [15.0, 3.5]
+    N319: [15.5, 3.5]
+    N320: [16.0, 3.5]
+    N321: [16.5, 3.5]
+    N322: [17.0, 3.5]
+    N323: [17.5, 3.5]
+    N324: [18.0, 3.5]
+    N325: [18.5, 3.5]
+    N326: [19.0, 3.5]
+    N327: [19.5, 3.5]
+    N328: [20.0, 3.5]
+    N329: [0.0, 4.0]
+    N330: [0.5, 4.0]
+    N331: [1.0, 4.0]
+    N332: [1.5, 4.0]
+    N333: [2.0, 4.0]
+    N334: [2.5, 4.0]
+    N335: [3.0, 4.0]
+    N336: [3.5, 4.0]
+    N337: [4.0, 4.0]
+    N338: [4.5, 4.0]
+    N339: [5.0, 4.0]
+    N340: [5.5, 4.0]
+    N341: [6.0, 4.0]
+    N342: [6.5, 4.0]
+    N343: [7.0, 4.0]
+    N344: [7.5, 4.0]
+    N345: [8.0, 4.0]
+    N346: [8.5, 4.0]
+    N347: [9.0, 4.0]
+    N348: [9.5, 4.0]
+    N349: [10.0, 4.0]
+    N350: [10.5, 4.0]
+    N351: [11.0, 4.0]
+    N352: [11.5, 4.0]
+    N353: [12.0, 4.0]
+    N354: [12.5, 4.0]
+    N355: [13.0, 4.0]
+    N356: [13.5, 4.0]
+    N357: [14.0, 4.0]
+    N358: [14.5, 4.0]
+    N359: [15.0, 4.0]
+    N360: [15.5, 4.0]
+    N361: [16.0, 4.0]
+    N362: [16.5, 4.0]
+    N363: [17.0, 4.0]
+    N364: [17.5, 4.0]
+    N365: [18.0, 4.0]
+    N366: [18.5, 4.0]
+    N367: [19.0, 4.0]
+    N368: [19.5, 4.0]
+    N369: [20.0, 4.0]
+    N370: [0.0, 4.5]
+    N371: [0.484375, 4.5]
+    N372: [0.96875, 4.5]
+    N373: [1.453125, 4.5]
+    N374: [1.9375, 4.5]
+    N375: [2.421875, 4.5]
+    N376: [2.90625, 4.5]
+    N377: [3.390625, 4.5]
+    N378: [3.875, 4.5]
+    N379: [4.359375, 4.5]
+    N380: [4.84375, 4.5]
+    N381: [5.328125, 4.5]
+    N382: [5.8125, 4.5]
+    N383: [6.296875, 4.5]
+    N384: [6.78125, 4.5]
+    N385: [7.265625, 4.5]
+    N386: [7.75, 4.5]
+    N387: [8.234375, 4.5]
+    N388: [8.71875, 4.5]
+    N389: [9.203125, 4.5]
+    N390: [9.6875, 4.5]
+    N391: [10.171875, 4.5]
+    N392: [10.65625, 4.5]
+    N393: [11.140625, 4.5]
+    N394: [11.625, 4.5]
+    N395: [12.109375, 4.5]
+    N396: [12.59375, 4.5]
+    N397: [13.078125, 4.5]
+    N398: [13.5625, 4.5]
+    N399: [14.046875, 4.5]
+    N400: [14.53125, 4.5]
+    N401: [15.015625, 4.5]
+    N402: [15.5, 4.5]
+    N403: [0.0, 5.0]
+    N404: [0.46875, 5.0]
+    N405: [0.9375, 5.0]
+    N406: [1.40625, 5.0]
+    N407: [1.875, 5.0]
+    N408: [2.34375, 5.0]
+    N409: [2.8125, 5.0]
+    N410: [3.28125, 5.0]
+    N411: [3.75, 5.0]
+    N412: [4.21875, 5.0]
+    N413: [4.6875, 5.0]
+    N414: [5.15625, 5.0]
+    N415: [5.625, 5.0]
+    N416: [6.09375, 5.0]
+    N417: [6.5625, 5.0]
+    N418: [7.03125, 5.0]
+    N419: [7.5, 5.0]
+    N420: [7.96875, 5.0]
+    N421: [8.4375, 5.0]
+    N422: [8.90625, 5.0]
+    N423: [9.375, 5.0]
+    N424: [9.84375, 5.0]
+    N425: [10.3125, 5.0]
+    N426: [10.78125, 5.0]
+    N427: [11.25, 5.0]
+    N428: [11.71875, 5.0]
+    N429: [12.1875, 5.0]
+    N430: [12.65625, 5.0]
+    N431: [13.125, 5.0]
+    N432: [13.59375, 5.0]
+    N433: [14.0625, 5.0]
+    N434: [14.53125, 5.0]
+    N435: [15.0, 5.0]
+    N436: [0.0, 5.5]
+    N437: [0.453125, 5.5]
+    N438: [0.90625, 5.5]
+    N439: [1.359375, 5.5]
+    N440: [1.8125, 5.5]
+    N441: [2.265625, 5.5]
+    N442: [2.71875, 5.5]
+    N443: [3.171875, 5.5]
+    N444: [3.625, 5.5]
+    N445: [4.078125, 5.5]
+    N446: [4.53125, 5.5]
+    N447: [4.984375, 5.5]
+    N448: [5.4375, 5.5]
+    N449: [5.890625, 5.5]
+    N450: [6.34375, 5.5]
+    N451: [6.796875, 5.5]
+    N452: [7.25, 5.5]
+    N453: [7.703125, 5.5]
+    N454: [8.15625, 5.5]
+    N455: [8.609375, 5.5]
+    N456: [9.0625, 5.5]
+    N457: [9.515625, 5.5]
+    N458: [9.96875, 5.5]
+    N459: [10.421875, 5.5]
+    N460: [10.875, 5.5]
+    N461: [11.328125, 5.5]
+    N462: [11.78125, 5.5]
+    N463: [12.234375, 5.5]
+    N464: [12.6875, 5.5]
+    N465: [13.140625, 5.5]
+    N466: [13.59375, 5.5]
+    N467: [14.046875, 5.5]
+    N468: [14.5, 5.5]
+    N469: [0.0, 6.0]
+    N470: [0.4375, 6.0]
+    N471: [0.875, 6.0]
+    N472: [1.3125, 6.0]
+    N473: [1.75, 6.0]
+    N474: [2.1875, 6.0]
+    N475: [2.625, 6.0]
+    N476: [3.0625, 6.0]
+    N477: [3.5, 6.0]
+    N478: [3.9375, 6.0]
+    N479: [4.375, 6.0]
+    N480: [4.8125, 6.0]
+    N481: [5.25, 6.0]
+    N482: [5.6875, 6.0]
+    N483: [6.125, 6.0]
+    N484: [6.5625, 6.0]
+    N485: [7.0, 6.0]
+    N486: [7.4375, 6.0]
+    N487: [7.875, 6.0]
+    N488: [8.3125, 6.0]
+    N489: [8.75, 6.0]
+    N490: [9.1875, 6.0]
+    N491: [9.625, 6.0]
+    N492: [10.0625, 6.0]
+    N493: [10.5, 6.0]
+    N494: [10.9375, 6.0]
+    N495: [11.375, 6.0]
+    N496: [11.8125, 6.0]
+    N497: [12.25, 6.0]
+    N498: [12.6875, 6.0]
+    N499: [13.125, 6.0]
+    N500: [13.5625, 6.0]
+    N501: [14.0, 6.0]
+    N502: [0.0, 6.5]
+    N503: [0.421875, 6.5]
+    N504: [0.84375, 6.5]
+    N505: [1.265625, 6.5]
+    N506: [1.6875, 6.5]
+    N507: [2.109375, 6.5]
+    N508: [2.53125, 6.5]
+    N509: [2.953125, 6.5]
+    N510: [3.375, 6.5]
+    N511: [3.796875, 6.5]
+    N512: [4.21875, 6.5]
+    N513: [4.640625, 6.5]
+    N514: [5.0625, 6.5]
+    N515: [5.484375, 6.5]
+    N516: [5.90625, 6.5]
+    N517: [6.328125, 6.5]
+    N518: [6.75, 6.5]
+    N519: [7.171875, 6.5]
+    N520: [7.59375, 6.5]
+    N521: [8.015625, 6.5]
+    N522: [8.4375, 6.5]
+    N523: [8.859375, 6.5]
+    N524: [9.28125, 6.5]
+    N525: [9.703125, 6.5]
+    N526: [10.125, 6.5]
+    N527: [10.546875, 6.5]
+    N528: [10.96875, 6.5]
+    N529: [11.390625, 6.5]
+    N530: [11.8125, 6.5]
+    N531: [12.234375, 6.5]
+    N532: [12.65625, 6.5]
+    N533: [13.078125, 6.5]
+    N534: [13.5, 6.5]
+    N535: [0.0, 7.0]
+    N536: [0.40625, 7.0]
+    N537: [0.8125, 7.0]
+    N538: [1.21875, 7.0]
+    N539: [1.625, 7.0]
+    N540: [2.03125, 7.0]
+    N541: [2.4375, 7.0]
+    N542: [2.84375, 7.0]
+    N543: [3.25, 7.0]
+    N544: [3.65625, 7.0]
+    N545: [4.0625, 7.0]
+    N546: [4.46875, 7.0]
+    N547: [4.875, 7.0]
+    N548: [5.28125, 7.0]
+    N549: [5.6875, 7.0]
+    N550: [6.09375, 7.0]
+    N551: [6.5, 7.0]
+    N552: [6.90625, 7.0]
+    N553: [7.3125, 7.0]
+    N554: [7.71875, 7.0]
+    N555: [8.125, 7.0]
+    N556: [8.53125, 7.0]
+    N557: [8.9375, 7.0]
+    N558: [9.34375, 7.0]
+    N559: [9.75, 7.0]
+    N560: [10.15625, 7.0]
+    N561: [10.5625, 7.0]
+    N562: [10.96875, 7.0]
+    N563: [11.375, 7.0]
+    N564: [11.78125, 7.0]
+    N565: [12.1875, 7.0]
+    N566: [12.59375, 7.0]
+    N567: [13.0, 7.0]
+    N568: [0.0, 7.5]
+    N569: [0.390625, 7.5]
+    N570: [0.78125, 7.5]
+    N571: [1.171875, 7.5]
+    N572: [1.5625, 7.5]
+    N573: [1.953125, 7.5]
+    N574: [2.34375, 7.5]
+    N575: [2.734375, 7.5]
+    N576: [3.125, 7.5]
+    N577: [3.515625, 7.5]
+    N578: [3.90625, 7.5]
+    N579: [4.296875, 7.5]
+    N580: [4.6875, 7.5]
+    N581: [5.078125, 7.5]
+    N582: [5.46875, 7.5]
+    N583: [5.859375, 7.5]
+    N584: [6.25, 7.5]
+    N585: [6.640625, 7.5]
+    N586: [7.03125, 7.5]
+    N587: [7.421875, 7.5]
+    N588: [7.8125, 7.5]
+    N589: [8.203125, 7.5]
+    N590: [8.59375, 7.5]
+    N591: [8.984375, 7.5]
+    N592: [9.375, 7.5]
+    N593: [9.765625, 7.5]
+    N594: [10.15625, 7.5]
+    N595: [10.546875, 7.5]
+    N596: [10.9375, 7.5]
+    N597: [11.328125, 7.5]
+    N598: [11.71875, 7.5]
+    N599: [12.109375, 7.5]
+    N600: [12.5, 7.5]
+    N601: [0.0, 8.0]
+    N602: [0.375, 8.0]
+    N603: [0.75, 8.0]
+    N604: [1.125, 8.0]
+    N605: [1.5, 8.0]
+    N606: [1.875, 8.0]
+    N607: [2.25, 8.0]
+    N608: [2.625, 8.0]
+    N609: [3.0, 8.0]
+    N610: [3.375, 8.0]
+    N611: [3.75, 8.0]
+    N612: [4.125, 8.0]
+    N613: [4.5, 8.0]
+    N614: [4.875, 8.0]
+    N615: [5.25, 8.0]
+    N616: [5.625, 8.0]
+    N617: [6.0, 8.0]
+    N618: [6.375, 8.0]
+    N619: [6.75, 8.0]
+    N620: [7.125, 8.0]
+    N621: [7.5, 8.0]
+    N622: [7.875, 8.0]
+    N623: [8.25, 8.0]
+    N624: [8.625, 8.0]
+    N625: [9.0, 8.0]
+    N626: [9.375, 8.0]
+    N627: [9.75, 8.0]
+    N628: [10.125, 8.0]
+    N629: [10.5, 8.0]
+    N630: [10.875, 8.0]
+    N631: [11.25, 8.0]
+    N632: [11.625, 8.0]
+    N633: [12.0, 8.0]
+    N634: [0.0, 8.5]
+    N635: [0.359375, 8.5]
+    N636: [0.71875, 8.5]
+    N637: [1.078125, 8.5]
+    N638: [1.4375, 8.5]
+    N639: [1.796875, 8.5]
+    N640: [2.15625, 8.5]
+    N641: [2.515625, 8.5]
+    N642: [2.875, 8.5]
+    N643: [3.234375, 8.5]
+    N644: [3.59375, 8.5]
+    N645: [3.953125, 8.5]
+    N646: [4.3125, 8.5]
+    N647: [4.671875, 8.5]
+    N648: [5.03125, 8.5]
+    N649: [5.390625, 8.5]
+    N650: [5.75, 8.5]
+    N651: [6.109375, 8.5]
+    N652: [6.46875, 8.5]
+    N653: [6.828125, 8.5]
+    N654: [7.1875, 8.5]
+    N655: [7.546875, 8.5]
+    N656: [7.90625, 8.5]
+    N657: [8.265625, 8.5]
+    N658: [8.625, 8.5]
+    N659: [8.984375, 8.5]
+    N660: [9.34375, 8.5]
+    N661: [9.703125, 8.5]
+    N662: [10.0625, 8.5]
+    N663: [10.421875, 8.5]
+    N664: [10.78125, 8.5]
+    N665: [11.140625, 8.5]
+    N666: [11.5, 8.5]
+    N667: [0.0, 9.0]
+    N668: [0.34375, 9.0]
+    N669: [0.6875, 9.0]
+    N670: [1.03125, 9.0]
+    N671: [1.375, 9.0]
+    N672: [1.71875, 9.0]
+    N673: [2.0625, 9.0]
+    N674: [2.40625, 9.0]
+    N675: [2.75, 9.0]
+    N676: [3.09375, 9.0]
+    N677: [3.4375, 9.0]
+    N678: [3.78125, 9.0]
+    N679: [4.125, 9.0]
+    N680: [4.46875, 9.0]
+    N681: [4.8125, 9.0]
+    N682: [5.15625, 9.0]
+    N683: [5.5, 9.0]
+    N684: [5.84375, 9.0]
+    N685: [6.1875, 9.0]
+    N686: [6.53125, 9.0]
+    N687: [6.875, 9.0]
+    N688: [7.21875, 9.0]
+    N689: [7.5625, 9.0]
+    N690: [7.90625, 9.0]
+    N691: [8.25, 9.0]
+    N692: [8.59375, 9.0]
+    N693: [8.9375, 9.0]
+    N694: [9.28125, 9.0]
+    N695: [9.625, 9.0]
+    N696: [9.96875, 9.0]
+    N697: [10.3125, 9.0]
+    N698: [10.65625, 9.0]
+    N699: [11.0, 9.0]
+    N700: [0.0, 9.5]
+    N701: [0.328125, 9.5]
+    N702: [0.65625, 9.5]
+    N703: [0.984375, 9.5]
+    N704: [1.3125, 9.5]
+    N705: [1.640625, 9.5]
+    N706: [1.96875, 9.5]
+    N707: [2.296875, 9.5]
+    N708: [2.625, 9.5]
+    N709: [2.953125, 9.5]
+    N710: [3.28125, 9.5]
+    N711: [3.609375, 9.5]
+    N712: [3.9375, 9.5]
+    N713: [4.265625, 9.5]
+    N714: [4.59375, 9.5]
+    N715: [4.921875, 9.5]
+    N716: [5.25, 9.5]
+    N717: [5.578125, 9.5]
+    N718: [5.90625, 9.5]
+    N719: [6.234375, 9.5]
+    N720: [6.5625, 9.5]
+    N721: [6.890625, 9.5]
+    N722: [7.21875, 9.5]
+    N723: [7.546875, 9.5]
+    N724: [7.875, 9.5]
+    N725: [8.203125, 9.5]
+    N726: [8.53125, 9.5]
+    N727: [8.859375, 9.5]
+    N728: [9.1875, 9.5]
+    N729: [9.515625, 9.5]
+    N730: [9.84375, 9.5]
+    N731: [10.171875, 9.5]
+    N732: [10.5, 9.5]
+    N733: [0.0, 10.0]
+    N734: [0.3125, 10.0]
+    N735: [0.625, 10.0]
+    N736: [0.9375, 10.0]
+    N737: [1.25, 10.0]
+    N738: [1.5625, 10.0]
+    N739: [1.875, 10.0]
+    N740: [2.1875, 10.0]
+    N741: [2.5, 10.0]
+    N742: [2.8125, 10.0]
+    N743: [3.125, 10.0]
+    N744: [3.4375, 10.0]
+    N745: [3.75, 10.0]
+    N746: [4.0625, 10.0]
+    N747: [4.375, 10.0]
+    N748: [4.6875, 10.0]
+    N749: [5.0, 10.0]
+    N750: [5.3125, 10.0]
+    N751: [5.625, 10.0]
+    N752: [5.9375, 10.0]
+    N753: [6.25, 10.0]
+    N754: [6.5625, 10.0]
+    N755: [6.875, 10.0]
+    N756: [7.1875, 10.0]
+    N757: [7.5, 10.0]
+    N758: [7.8125, 10.0]
+    N759: [8.125, 10.0]
+    N760: [8.4375, 10.0]
+    N761: [8.75, 10.0]
+    N762: [9.0625, 10.0]
+    N763: [9.375, 10.0]
+    N764: [9.6875, 10.0]
+    N765: [10.0, 10.0]
+  elements:
+    - {id: E1, type: QUAD4, nodes: [N1, N2, N43, N42], material: case4_soil, integration: SRI}
+    - {id: E2, type: QUAD4, nodes: [N2, N3, N44, N43], material: case4_soil, integration: SRI}
+    - {id: E3, type: QUAD4, nodes: [N3, N4, N45, N44], material: case4_soil, integration: SRI}
+    - {id: E4, type: QUAD4, nodes: [N4, N5, N46, N45], material: case4_soil, integration: SRI}
+    - {id: E5, type: QUAD4, nodes: [N5, N6, N47, N46], material: case4_soil, integration: SRI}
+    - {id: E6, type: QUAD4, nodes: [N6, N7, N48, N47], material: case4_soil, integration: SRI}
+    - {id: E7, type: QUAD4, nodes: [N7, N8, N49, N48], material: case4_soil, integration: SRI}
+    - {id: E8, type: QUAD4, nodes: [N8, N9, N50, N49], material: case4_soil, integration: SRI}
+    - {id: E9, type: QUAD4, nodes: [N9, N10, N51, N50], material: case4_soil, integration: SRI}
+    - {id: E10, type: QUAD4, nodes: [N10, N11, N52, N51], material: case4_soil, integration: SRI}
+    - {id: E11, type: QUAD4, nodes: [N11, N12, N53, N52], material: case4_soil, integration: SRI}
+    - {id: E12, type: QUAD4, nodes: [N12, N13, N54, N53], material: case4_soil, integration: SRI}
+    - {id: E13, type: QUAD4, nodes: [N13, N14, N55, N54], material: case4_soil, integration: SRI}
+    - {id: E14, type: QUAD4, nodes: [N14, N15, N56, N55], material: case4_soil, integration: SRI}
+    - {id: E15, type: QUAD4, nodes: [N15, N16, N57, N56], material: case4_soil, integration: SRI}
+    - {id: E16, type: QUAD4, nodes: [N16, N17, N58, N57], material: case4_soil, integration: SRI}
+    - {id: E17, type: QUAD4, nodes: [N17, N18, N59, N58], material: case4_soil, integration: SRI}
+    - {id: E18, type: QUAD4, nodes: [N18, N19, N60, N59], material: case4_soil, integration: SRI}
+    - {id: E19, type: QUAD4, nodes: [N19, N20, N61, N60], material: case4_soil, integration: SRI}
+    - {id: E20, type: QUAD4, nodes: [N20, N21, N62, N61], material: case4_soil, integration: SRI}
+    - {id: E21, type: QUAD4, nodes: [N21, N22, N63, N62], material: case4_soil, integration: SRI}
+    - {id: E22, type: QUAD4, nodes: [N22, N23, N64, N63], material: case4_soil, integration: SRI}
+    - {id: E23, type: QUAD4, nodes: [N23, N24, N65, N64], material: case4_soil, integration: SRI}
+    - {id: E24, type: QUAD4, nodes: [N24, N25, N66, N65], material: case4_soil, integration: SRI}
+    - {id: E25, type: QUAD4, nodes: [N25, N26, N67, N66], material: case4_soil, integration: SRI}
+    - {id: E26, type: QUAD4, nodes: [N26, N27, N68, N67], material: case4_soil, integration: SRI}
+    - {id: E27, type: QUAD4, nodes: [N27, N28, N69, N68], material: case4_soil, integration: SRI}
+    - {id: E28, type: QUAD4, nodes: [N28, N29, N70, N69], material: case4_soil, integration: SRI}
+    - {id: E29, type: QUAD4, nodes: [N29, N30, N71, N70], material: case4_soil, integration: SRI}
+    - {id: E30, type: QUAD4, nodes: [N30, N31, N72, N71], material: case4_soil, integration: SRI}
+    - {id: E31, type: QUAD4, nodes: [N31, N32, N73, N72], material: case4_soil, integration: SRI}
+    - {id: E32, type: QUAD4, nodes: [N32, N33, N74, N73], material: case4_soil, integration: SRI}
+    - {id: E33, type: QUAD4, nodes: [N33, N34, N75, N74], material: case4_soil, integration: SRI}
+    - {id: E34, type: QUAD4, nodes: [N34, N35, N76, N75], material: case4_soil, integration: SRI}
+    - {id: E35, type: QUAD4, nodes: [N35, N36, N77, N76], material: case4_soil, integration: SRI}
+    - {id: E36, type: QUAD4, nodes: [N36, N37, N78, N77], material: case4_soil, integration: SRI}
+    - {id: E37, type: QUAD4, nodes: [N37, N38, N79, N78], material: case4_soil, integration: SRI}
+    - {id: E38, type: QUAD4, nodes: [N38, N39, N80, N79], material: case4_soil, integration: SRI}
+    - {id: E39, type: QUAD4, nodes: [N39, N40, N81, N80], material: case4_soil, integration: SRI}
+    - {id: E40, type: QUAD4, nodes: [N40, N41, N82, N81], material: case4_soil, integration: SRI}
+    - {id: E41, type: QUAD4, nodes: [N42, N43, N84, N83], material: case4_soil, integration: SRI}
+    - {id: E42, type: QUAD4, nodes: [N43, N44, N85, N84], material: case4_soil, integration: SRI}
+    - {id: E43, type: QUAD4, nodes: [N44, N45, N86, N85], material: case4_soil, integration: SRI}
+    - {id: E44, type: QUAD4, nodes: [N45, N46, N87, N86], material: case4_soil, integration: SRI}
+    - {id: E45, type: QUAD4, nodes: [N46, N47, N88, N87], material: case4_soil, integration: SRI}
+    - {id: E46, type: QUAD4, nodes: [N47, N48, N89, N88], material: case4_soil, integration: SRI}
+    - {id: E47, type: QUAD4, nodes: [N48, N49, N90, N89], material: case4_soil, integration: SRI}
+    - {id: E48, type: QUAD4, nodes: [N49, N50, N91, N90], material: case4_soil, integration: SRI}
+    - {id: E49, type: QUAD4, nodes: [N50, N51, N92, N91], material: case4_soil, integration: SRI}
+    - {id: E50, type: QUAD4, nodes: [N51, N52, N93, N92], material: case4_soil, integration: SRI}
+    - {id: E51, type: QUAD4, nodes: [N52, N53, N94, N93], material: case4_soil, integration: SRI}
+    - {id: E52, type: QUAD4, nodes: [N53, N54, N95, N94], material: case4_soil, integration: SRI}
+    - {id: E53, type: QUAD4, nodes: [N54, N55, N96, N95], material: case4_soil, integration: SRI}
+    - {id: E54, type: QUAD4, nodes: [N55, N56, N97, N96], material: case4_soil, integration: SRI}
+    - {id: E55, type: QUAD4, nodes: [N56, N57, N98, N97], material: case4_soil, integration: SRI}
+    - {id: E56, type: QUAD4, nodes: [N57, N58, N99, N98], material: case4_soil, integration: SRI}
+    - {id: E57, type: QUAD4, nodes: [N58, N59, N100, N99], material: case4_soil, integration: SRI}
+    - {id: E58, type: QUAD4, nodes: [N59, N60, N101, N100], material: case4_soil, integration: SRI}
+    - {id: E59, type: QUAD4, nodes: [N60, N61, N102, N101], material: case4_soil, integration: SRI}
+    - {id: E60, type: QUAD4, nodes: [N61, N62, N103, N102], material: case4_soil, integration: SRI}
+    - {id: E61, type: QUAD4, nodes: [N62, N63, N104, N103], material: case4_soil, integration: SRI}
+    - {id: E62, type: QUAD4, nodes: [N63, N64, N105, N104], material: case4_soil, integration: SRI}
+    - {id: E63, type: QUAD4, nodes: [N64, N65, N106, N105], material: case4_soil, integration: SRI}
+    - {id: E64, type: QUAD4, nodes: [N65, N66, N107, N106], material: case4_soil, integration: SRI}
+    - {id: E65, type: QUAD4, nodes: [N66, N67, N108, N107], material: case4_soil, integration: SRI}
+    - {id: E66, type: QUAD4, nodes: [N67, N68, N109, N108], material: case4_soil, integration: SRI}
+    - {id: E67, type: QUAD4, nodes: [N68, N69, N110, N109], material: case4_soil, integration: SRI}
+    - {id: E68, type: QUAD4, nodes: [N69, N70, N111, N110], material: case4_soil, integration: SRI}
+    - {id: E69, type: QUAD4, nodes: [N70, N71, N112, N111], material: case4_soil, integration: SRI}
+    - {id: E70, type: QUAD4, nodes: [N71, N72, N113, N112], material: case4_soil, integration: SRI}
+    - {id: E71, type: QUAD4, nodes: [N72, N73, N114, N113], material: case4_soil, integration: SRI}
+    - {id: E72, type: QUAD4, nodes: [N73, N74, N115, N114], material: case4_soil, integration: SRI}
+    - {id: E73, type: QUAD4, nodes: [N74, N75, N116, N115], material: case4_soil, integration: SRI}
+    - {id: E74, type: QUAD4, nodes: [N75, N76, N117, N116], material: case4_soil, integration: SRI}
+    - {id: E75, type: QUAD4, nodes: [N76, N77, N118, N117], material: case4_soil, integration: SRI}
+    - {id: E76, type: QUAD4, nodes: [N77, N78, N119, N118], material: case4_soil, integration: SRI}
+    - {id: E77, type: QUAD4, nodes: [N78, N79, N120, N119], material: case4_soil, integration: SRI}
+    - {id: E78, type: QUAD4, nodes: [N79, N80, N121, N120], material: case4_soil, integration: SRI}
+    - {id: E79, type: QUAD4, nodes: [N80, N81, N122, N121], material: case4_soil, integration: SRI}
+    - {id: E80, type: QUAD4, nodes: [N81, N82, N123, N122], material: case4_soil, integration: SRI}
+    - {id: E81, type: QUAD4, nodes: [N83, N84, N125, N124], material: case4_soil, integration: SRI}
+    - {id: E82, type: QUAD4, nodes: [N84, N85, N126, N125], material: case4_soil, integration: SRI}
+    - {id: E83, type: QUAD4, nodes: [N85, N86, N127, N126], material: case4_soil, integration: SRI}
+    - {id: E84, type: QUAD4, nodes: [N86, N87, N128, N127], material: case4_soil, integration: SRI}
+    - {id: E85, type: QUAD4, nodes: [N87, N88, N129, N128], material: case4_soil, integration: SRI}
+    - {id: E86, type: QUAD4, nodes: [N88, N89, N130, N129], material: case4_soil, integration: SRI}
+    - {id: E87, type: QUAD4, nodes: [N89, N90, N131, N130], material: case4_soil, integration: SRI}
+    - {id: E88, type: QUAD4, nodes: [N90, N91, N132, N131], material: case4_soil, integration: SRI}
+    - {id: E89, type: QUAD4, nodes: [N91, N92, N133, N132], material: case4_soil, integration: SRI}
+    - {id: E90, type: QUAD4, nodes: [N92, N93, N134, N133], material: case4_soil, integration: SRI}
+    - {id: E91, type: QUAD4, nodes: [N93, N94, N135, N134], material: case4_soil, integration: SRI}
+    - {id: E92, type: QUAD4, nodes: [N94, N95, N136, N135], material: case4_soil, integration: SRI}
+    - {id: E93, type: QUAD4, nodes: [N95, N96, N137, N136], material: case4_soil, integration: SRI}
+    - {id: E94, type: QUAD4, nodes: [N96, N97, N138, N137], material: case4_soil, integration: SRI}
+    - {id: E95, type: QUAD4, nodes: [N97, N98, N139, N138], material: case4_soil, integration: SRI}
+    - {id: E96, type: QUAD4, nodes: [N98, N99, N140, N139], material: case4_soil, integration: SRI}
+    - {id: E97, type: QUAD4, nodes: [N99, N100, N141, N140], material: case4_soil, integration: SRI}
+    - {id: E98, type: QUAD4, nodes: [N100, N101, N142, N141], material: case4_soil, integration: SRI}
+    - {id: E99, type: QUAD4, nodes: [N101, N102, N143, N142], material: case4_soil, integration: SRI}
+    - {id: E100, type: QUAD4, nodes: [N102, N103, N144, N143], material: case4_soil, integration: SRI}
+    - {id: E101, type: QUAD4, nodes: [N103, N104, N145, N144], material: case4_soil, integration: SRI}
+    - {id: E102, type: QUAD4, nodes: [N104, N105, N146, N145], material: case4_soil, integration: SRI}
+    - {id: E103, type: QUAD4, nodes: [N105, N106, N147, N146], material: case4_soil, integration: SRI}
+    - {id: E104, type: QUAD4, nodes: [N106, N107, N148, N147], material: case4_soil, integration: SRI}
+    - {id: E105, type: QUAD4, nodes: [N107, N108, N149, N148], material: case4_soil, integration: SRI}
+    - {id: E106, type: QUAD4, nodes: [N108, N109, N150, N149], material: case4_soil, integration: SRI}
+    - {id: E107, type: QUAD4, nodes: [N109, N110, N151, N150], material: case4_soil, integration: SRI}
+    - {id: E108, type: QUAD4, nodes: [N110, N111, N152, N151], material: case4_soil, integration: SRI}
+    - {id: E109, type: QUAD4, nodes: [N111, N112, N153, N152], material: case4_soil, integration: SRI}
+    - {id: E110, type: QUAD4, nodes: [N112, N113, N154, N153], material: case4_soil, integration: SRI}
+    - {id: E111, type: QUAD4, nodes: [N113, N114, N155, N154], material: case4_soil, integration: SRI}
+    - {id: E112, type: QUAD4, nodes: [N114, N115, N156, N155], material: case4_soil, integration: SRI}
+    - {id: E113, type: QUAD4, nodes: [N115, N116, N157, N156], material: case4_soil, integration: SRI}
+    - {id: E114, type: QUAD4, nodes: [N116, N117, N158, N157], material: case4_soil, integration: SRI}
+    - {id: E115, type: QUAD4, nodes: [N117, N118, N159, N158], material: case4_soil, integration: SRI}
+    - {id: E116, type: QUAD4, nodes: [N118, N119, N160, N159], material: case4_soil, integration: SRI}
+    - {id: E117, type: QUAD4, nodes: [N119, N120, N161, N160], material: case4_soil, integration: SRI}
+    - {id: E118, type: QUAD4, nodes: [N120, N121, N162, N161], material: case4_soil, integration: SRI}
+    - {id: E119, type: QUAD4, nodes: [N121, N122, N163, N162], material: case4_soil, integration: SRI}
+    - {id: E120, type: QUAD4, nodes: [N122, N123, N164, N163], material: case4_soil, integration: SRI}
+    - {id: E121, type: QUAD4, nodes: [N124, N125, N166, N165], material: case4_soil, integration: SRI}
+    - {id: E122, type: QUAD4, nodes: [N125, N126, N167, N166], material: case4_soil, integration: SRI}
+    - {id: E123, type: QUAD4, nodes: [N126, N127, N168, N167], material: case4_soil, integration: SRI}
+    - {id: E124, type: QUAD4, nodes: [N127, N128, N169, N168], material: case4_soil, integration: SRI}
+    - {id: E125, type: QUAD4, nodes: [N128, N129, N170, N169], material: case4_soil, integration: SRI}
+    - {id: E126, type: QUAD4, nodes: [N129, N130, N171, N170], material: case4_soil, integration: SRI}
+    - {id: E127, type: QUAD4, nodes: [N130, N131, N172, N171], material: case4_soil, integration: SRI}
+    - {id: E128, type: QUAD4, nodes: [N131, N132, N173, N172], material: case4_soil, integration: SRI}
+    - {id: E129, type: QUAD4, nodes: [N132, N133, N174, N173], material: case4_soil, integration: SRI}
+    - {id: E130, type: QUAD4, nodes: [N133, N134, N175, N174], material: case4_soil, integration: SRI}
+    - {id: E131, type: QUAD4, nodes: [N134, N135, N176, N175], material: case4_soil, integration: SRI}
+    - {id: E132, type: QUAD4, nodes: [N135, N136, N177, N176], material: case4_soil, integration: SRI}
+    - {id: E133, type: QUAD4, nodes: [N136, N137, N178, N177], material: case4_soil, integration: SRI}
+    - {id: E134, type: QUAD4, nodes: [N137, N138, N179, N178], material: case4_soil, integration: SRI}
+    - {id: E135, type: QUAD4, nodes: [N138, N139, N180, N179], material: case4_soil, integration: SRI}
+    - {id: E136, type: QUAD4, nodes: [N139, N140, N181, N180], material: case4_soil, integration: SRI}
+    - {id: E137, type: QUAD4, nodes: [N140, N141, N182, N181], material: case4_soil, integration: SRI}
+    - {id: E138, type: QUAD4, nodes: [N141, N142, N183, N182], material: case4_soil, integration: SRI}
+    - {id: E139, type: QUAD4, nodes: [N142, N143, N184, N183], material: case4_soil, integration: SRI}
+    - {id: E140, type: QUAD4, nodes: [N143, N144, N185, N184], material: case4_soil, integration: SRI}
+    - {id: E141, type: QUAD4, nodes: [N144, N145, N186, N185], material: case4_soil, integration: SRI}
+    - {id: E142, type: QUAD4, nodes: [N145, N146, N187, N186], material: case4_soil, integration: SRI}
+    - {id: E143, type: QUAD4, nodes: [N146, N147, N188, N187], material: case4_soil, integration: SRI}
+    - {id: E144, type: QUAD4, nodes: [N147, N148, N189, N188], material: case4_soil, integration: SRI}
+    - {id: E145, type: QUAD4, nodes: [N148, N149, N190, N189], material: case4_soil, integration: SRI}
+    - {id: E146, type: QUAD4, nodes: [N149, N150, N191, N190], material: case4_soil, integration: SRI}
+    - {id: E147, type: QUAD4, nodes: [N150, N151, N192, N191], material: case4_soil, integration: SRI}
+    - {id: E148, type: QUAD4, nodes: [N151, N152, N193, N192], material: case4_soil, integration: SRI}
+    - {id: E149, type: QUAD4, nodes: [N152, N153, N194, N193], material: case4_soil, integration: SRI}
+    - {id: E150, type: QUAD4, nodes: [N153, N154, N195, N194], material: case4_soil, integration: SRI}
+    - {id: E151, type: QUAD4, nodes: [N154, N155, N196, N195], material: case4_soil, integration: SRI}
+    - {id: E152, type: QUAD4, nodes: [N155, N156, N197, N196], material: case4_soil, integration: SRI}
+    - {id: E153, type: QUAD4, nodes: [N156, N157, N198, N197], material: case4_soil, integration: SRI}
+    - {id: E154, type: QUAD4, nodes: [N157, N158, N199, N198], material: case4_soil, integration: SRI}
+    - {id: E155, type: QUAD4, nodes: [N158, N159, N200, N199], material: case4_soil, integration: SRI}
+    - {id: E156, type: QUAD4, nodes: [N159, N160, N201, N200], material: case4_soil, integration: SRI}
+    - {id: E157, type: QUAD4, nodes: [N160, N161, N202, N201], material: case4_soil, integration: SRI}
+    - {id: E158, type: QUAD4, nodes: [N161, N162, N203, N202], material: case4_soil, integration: SRI}
+    - {id: E159, type: QUAD4, nodes: [N162, N163, N204, N203], material: case4_soil, integration: SRI}
+    - {id: E160, type: QUAD4, nodes: [N163, N164, N205, N204], material: case4_soil, integration: SRI}
+    - {id: E161, type: QUAD4, nodes: [N165, N166, N207, N206], material: case4_soil, integration: SRI}
+    - {id: E162, type: QUAD4, nodes: [N166, N167, N208, N207], material: case4_soil, integration: SRI}
+    - {id: E163, type: QUAD4, nodes: [N167, N168, N209, N208], material: case4_soil, integration: SRI}
+    - {id: E164, type: QUAD4, nodes: [N168, N169, N210, N209], material: case4_soil, integration: SRI}
+    - {id: E165, type: QUAD4, nodes: [N169, N170, N211, N210], material: case4_soil, integration: SRI}
+    - {id: E166, type: QUAD4, nodes: [N170, N171, N212, N211], material: case4_soil, integration: SRI}
+    - {id: E167, type: QUAD4, nodes: [N171, N172, N213, N212], material: case4_soil, integration: SRI}
+    - {id: E168, type: QUAD4, nodes: [N172, N173, N214, N213], material: case4_soil, integration: SRI}
+    - {id: E169, type: QUAD4, nodes: [N173, N174, N215, N214], material: case4_soil, integration: SRI}
+    - {id: E170, type: QUAD4, nodes: [N174, N175, N216, N215], material: case4_soil, integration: SRI}
+    - {id: E171, type: QUAD4, nodes: [N175, N176, N217, N216], material: case4_soil, integration: SRI}
+    - {id: E172, type: QUAD4, nodes: [N176, N177, N218, N217], material: case4_soil, integration: SRI}
+    - {id: E173, type: QUAD4, nodes: [N177, N178, N219, N218], material: case4_soil, integration: SRI}
+    - {id: E174, type: QUAD4, nodes: [N178, N179, N220, N219], material: case4_soil, integration: SRI}
+    - {id: E175, type: QUAD4, nodes: [N179, N180, N221, N220], material: case4_soil, integration: SRI}
+    - {id: E176, type: QUAD4, nodes: [N180, N181, N222, N221], material: case4_soil, integration: SRI}
+    - {id: E177, type: QUAD4, nodes: [N181, N182, N223, N222], material: case4_soil, integration: SRI}
+    - {id: E178, type: QUAD4, nodes: [N182, N183, N224, N223], material: case4_soil, integration: SRI}
+    - {id: E179, type: QUAD4, nodes: [N183, N184, N225, N224], material: case4_soil, integration: SRI}
+    - {id: E180, type: QUAD4, nodes: [N184, N185, N226, N225], material: case4_soil, integration: SRI}
+    - {id: E181, type: QUAD4, nodes: [N185, N186, N227, N226], material: case4_soil, integration: SRI}
+    - {id: E182, type: QUAD4, nodes: [N186, N187, N228, N227], material: case4_soil, integration: SRI}
+    - {id: E183, type: QUAD4, nodes: [N187, N188, N229, N228], material: case4_soil, integration: SRI}
+    - {id: E184, type: QUAD4, nodes: [N188, N189, N230, N229], material: case4_soil, integration: SRI}
+    - {id: E185, type: QUAD4, nodes: [N189, N190, N231, N230], material: case4_soil, integration: SRI}
+    - {id: E186, type: QUAD4, nodes: [N190, N191, N232, N231], material: case4_soil, integration: SRI}
+    - {id: E187, type: QUAD4, nodes: [N191, N192, N233, N232], material: case4_soil, integration: SRI}
+    - {id: E188, type: QUAD4, nodes: [N192, N193, N234, N233], material: case4_soil, integration: SRI}
+    - {id: E189, type: QUAD4, nodes: [N193, N194, N235, N234], material: case4_soil, integration: SRI}
+    - {id: E190, type: QUAD4, nodes: [N194, N195, N236, N235], material: case4_soil, integration: SRI}
+    - {id: E191, type: QUAD4, nodes: [N195, N196, N237, N236], material: case4_soil, integration: SRI}
+    - {id: E192, type: QUAD4, nodes: [N196, N197, N238, N237], material: case4_soil, integration: SRI}
+    - {id: E193, type: QUAD4, nodes: [N197, N198, N239, N238], material: case4_soil, integration: SRI}
+    - {id: E194, type: QUAD4, nodes: [N198, N199, N240, N239], material: case4_soil, integration: SRI}
+    - {id: E195, type: QUAD4, nodes: [N199, N200, N241, N240], material: case4_soil, integration: SRI}
+    - {id: E196, type: QUAD4, nodes: [N200, N201, N242, N241], material: case4_soil, integration: SRI}
+    - {id: E197, type: QUAD4, nodes: [N201, N202, N243, N242], material: case4_soil, integration: SRI}
+    - {id: E198, type: QUAD4, nodes: [N202, N203, N244, N243], material: case4_soil, integration: SRI}
+    - {id: E199, type: QUAD4, nodes: [N203, N204, N245, N244], material: case4_soil, integration: SRI}
+    - {id: E200, type: QUAD4, nodes: [N204, N205, N246, N245], material: case4_soil, integration: SRI}
+    - {id: E201, type: QUAD4, nodes: [N206, N207, N248, N247], material: case4_soil, integration: SRI}
+    - {id: E202, type: QUAD4, nodes: [N207, N208, N249, N248], material: case4_soil, integration: SRI}
+    - {id: E203, type: QUAD4, nodes: [N208, N209, N250, N249], material: case4_soil, integration: SRI}
+    - {id: E204, type: QUAD4, nodes: [N209, N210, N251, N250], material: case4_soil, integration: SRI}
+    - {id: E205, type: QUAD4, nodes: [N210, N211, N252, N251], material: case4_soil, integration: SRI}
+    - {id: E206, type: QUAD4, nodes: [N211, N212, N253, N252], material: case4_soil, integration: SRI}
+    - {id: E207, type: QUAD4, nodes: [N212, N213, N254, N253], material: case4_soil, integration: SRI}
+    - {id: E208, type: QUAD4, nodes: [N213, N214, N255, N254], material: case4_soil, integration: SRI}
+    - {id: E209, type: QUAD4, nodes: [N214, N215, N256, N255], material: case4_soil, integration: SRI}
+    - {id: E210, type: QUAD4, nodes: [N215, N216, N257, N256], material: case4_soil, integration: SRI}
+    - {id: E211, type: QUAD4, nodes: [N216, N217, N258, N257], material: case4_soil, integration: SRI}
+    - {id: E212, type: QUAD4, nodes: [N217, N218, N259, N258], material: case4_soil, integration: SRI}
+    - {id: E213, type: QUAD4, nodes: [N218, N219, N260, N259], material: case4_soil, integration: SRI}
+    - {id: E214, type: QUAD4, nodes: [N219, N220, N261, N260], material: case4_soil, integration: SRI}
+    - {id: E215, type: QUAD4, nodes: [N220, N221, N262, N261], material: case4_soil, integration: SRI}
+    - {id: E216, type: QUAD4, nodes: [N221, N222, N263, N262], material: case4_soil, integration: SRI}
+    - {id: E217, type: QUAD4, nodes: [N222, N223, N264, N263], material: case4_soil, integration: SRI}
+    - {id: E218, type: QUAD4, nodes: [N223, N224, N265, N264], material: case4_soil, integration: SRI}
+    - {id: E219, type: QUAD4, nodes: [N224, N225, N266, N265], material: case4_soil, integration: SRI}
+    - {id: E220, type: QUAD4, nodes: [N225, N226, N267, N266], material: case4_soil, integration: SRI}
+    - {id: E221, type: QUAD4, nodes: [N226, N227, N268, N267], material: case4_soil, integration: SRI}
+    - {id: E222, type: QUAD4, nodes: [N227, N228, N269, N268], material: case4_soil, integration: SRI}
+    - {id: E223, type: QUAD4, nodes: [N228, N229, N270, N269], material: case4_soil, integration: SRI}
+    - {id: E224, type: QUAD4, nodes: [N229, N230, N271, N270], material: case4_soil, integration: SRI}
+    - {id: E225, type: QUAD4, nodes: [N230, N231, N272, N271], material: case4_soil, integration: SRI}
+    - {id: E226, type: QUAD4, nodes: [N231, N232, N273, N272], material: case4_soil, integration: SRI}
+    - {id: E227, type: QUAD4, nodes: [N232, N233, N274, N273], material: case4_soil, integration: SRI}
+    - {id: E228, type: QUAD4, nodes: [N233, N234, N275, N274], material: case4_soil, integration: SRI}
+    - {id: E229, type: QUAD4, nodes: [N234, N235, N276, N275], material: case4_soil, integration: SRI}
+    - {id: E230, type: QUAD4, nodes: [N235, N236, N277, N276], material: case4_soil, integration: SRI}
+    - {id: E231, type: QUAD4, nodes: [N236, N237, N278, N277], material: case4_soil, integration: SRI}
+    - {id: E232, type: QUAD4, nodes: [N237, N238, N279, N278], material: case4_soil, integration: SRI}
+    - {id: E233, type: QUAD4, nodes: [N238, N239, N280, N279], material: case4_soil, integration: SRI}
+    - {id: E234, type: QUAD4, nodes: [N239, N240, N281, N280], material: case4_soil, integration: SRI}
+    - {id: E235, type: QUAD4, nodes: [N240, N241, N282, N281], material: case4_soil, integration: SRI}
+    - {id: E236, type: QUAD4, nodes: [N241, N242, N283, N282], material: case4_soil, integration: SRI}
+    - {id: E237, type: QUAD4, nodes: [N242, N243, N284, N283], material: case4_soil, integration: SRI}
+    - {id: E238, type: QUAD4, nodes: [N243, N244, N285, N284], material: case4_soil, integration: SRI}
+    - {id: E239, type: QUAD4, nodes: [N244, N245, N286, N285], material: case4_soil, integration: SRI}
+    - {id: E240, type: QUAD4, nodes: [N245, N246, N287, N286], material: case4_soil, integration: SRI}
+    - {id: E241, type: QUAD4, nodes: [N247, N248, N289, N288], material: case4_soil, integration: SRI}
+    - {id: E242, type: QUAD4, nodes: [N248, N249, N290, N289], material: case4_soil, integration: SRI}
+    - {id: E243, type: QUAD4, nodes: [N249, N250, N291, N290], material: case4_soil, integration: SRI}
+    - {id: E244, type: QUAD4, nodes: [N250, N251, N292, N291], material: case4_soil, integration: SRI}
+    - {id: E245, type: QUAD4, nodes: [N251, N252, N293, N292], material: case4_soil, integration: SRI}
+    - {id: E246, type: QUAD4, nodes: [N252, N253, N294, N293], material: case4_soil, integration: SRI}
+    - {id: E247, type: QUAD4, nodes: [N253, N254, N295, N294], material: case4_soil, integration: SRI}
+    - {id: E248, type: QUAD4, nodes: [N254, N255, N296, N295], material: case4_soil, integration: SRI}
+    - {id: E249, type: QUAD4, nodes: [N255, N256, N297, N296], material: case4_soil, integration: SRI}
+    - {id: E250, type: QUAD4, nodes: [N256, N257, N298, N297], material: case4_soil, integration: SRI}
+    - {id: E251, type: QUAD4, nodes: [N257, N258, N299, N298], material: case4_soil, integration: SRI}
+    - {id: E252, type: QUAD4, nodes: [N258, N259, N300, N299], material: case4_soil, integration: SRI}
+    - {id: E253, type: QUAD4, nodes: [N259, N260, N301, N300], material: case4_soil, integration: SRI}
+    - {id: E254, type: QUAD4, nodes: [N260, N261, N302, N301], material: case4_soil, integration: SRI}
+    - {id: E255, type: QUAD4, nodes: [N261, N262, N303, N302], material: case4_soil, integration: SRI}
+    - {id: E256, type: QUAD4, nodes: [N262, N263, N304, N303], material: case4_soil, integration: SRI}
+    - {id: E257, type: QUAD4, nodes: [N263, N264, N305, N304], material: case4_soil, integration: SRI}
+    - {id: E258, type: QUAD4, nodes: [N264, N265, N306, N305], material: case4_soil, integration: SRI}
+    - {id: E259, type: QUAD4, nodes: [N265, N266, N307, N306], material: case4_soil, integration: SRI}
+    - {id: E260, type: QUAD4, nodes: [N266, N267, N308, N307], material: case4_soil, integration: SRI}
+    - {id: E261, type: QUAD4, nodes: [N267, N268, N309, N308], material: case4_soil, integration: SRI}
+    - {id: E262, type: QUAD4, nodes: [N268, N269, N310, N309], material: case4_soil, integration: SRI}
+    - {id: E263, type: QUAD4, nodes: [N269, N270, N311, N310], material: case4_soil, integration: SRI}
+    - {id: E264, type: QUAD4, nodes: [N270, N271, N312, N311], material: case4_soil, integration: SRI}
+    - {id: E265, type: QUAD4, nodes: [N271, N272, N313, N312], material: case4_soil, integration: SRI}
+    - {id: E266, type: QUAD4, nodes: [N272, N273, N314, N313], material: case4_soil, integration: SRI}
+    - {id: E267, type: QUAD4, nodes: [N273, N274, N315, N314], material: case4_soil, integration: SRI}
+    - {id: E268, type: QUAD4, nodes: [N274, N275, N316, N315], material: case4_soil, integration: SRI}
+    - {id: E269, type: QUAD4, nodes: [N275, N276, N317, N316], material: case4_soil, integration: SRI}
+    - {id: E270, type: QUAD4, nodes: [N276, N277, N318, N317], material: case4_soil, integration: SRI}
+    - {id: E271, type: QUAD4, nodes: [N277, N278, N319, N318], material: case4_soil, integration: SRI}
+    - {id: E272, type: QUAD4, nodes: [N278, N279, N320, N319], material: case4_soil, integration: SRI}
+    - {id: E273, type: QUAD4, nodes: [N279, N280, N321, N320], material: case4_soil, integration: SRI}
+    - {id: E274, type: QUAD4, nodes: [N280, N281, N322, N321], material: case4_soil, integration: SRI}
+    - {id: E275, type: QUAD4, nodes: [N281, N282, N323, N322], material: case4_soil, integration: SRI}
+    - {id: E276, type: QUAD4, nodes: [N282, N283, N324, N323], material: case4_soil, integration: SRI}
+    - {id: E277, type: QUAD4, nodes: [N283, N284, N325, N324], material: case4_soil, integration: SRI}
+    - {id: E278, type: QUAD4, nodes: [N284, N285, N326, N325], material: case4_soil, integration: SRI}
+    - {id: E279, type: QUAD4, nodes: [N285, N286, N327, N326], material: case4_soil, integration: SRI}
+    - {id: E280, type: QUAD4, nodes: [N286, N287, N328, N327], material: case4_soil, integration: SRI}
+    - {id: E281, type: QUAD4, nodes: [N288, N289, N330, N329], material: case4_soil, integration: SRI}
+    - {id: E282, type: QUAD4, nodes: [N289, N290, N331, N330], material: case4_soil, integration: SRI}
+    - {id: E283, type: QUAD4, nodes: [N290, N291, N332, N331], material: case4_soil, integration: SRI}
+    - {id: E284, type: QUAD4, nodes: [N291, N292, N333, N332], material: case4_soil, integration: SRI}
+    - {id: E285, type: QUAD4, nodes: [N292, N293, N334, N333], material: case4_soil, integration: SRI}
+    - {id: E286, type: QUAD4, nodes: [N293, N294, N335, N334], material: case4_soil, integration: SRI}
+    - {id: E287, type: QUAD4, nodes: [N294, N295, N336, N335], material: case4_soil, integration: SRI}
+    - {id: E288, type: QUAD4, nodes: [N295, N296, N337, N336], material: case4_soil, integration: SRI}
+    - {id: E289, type: QUAD4, nodes: [N296, N297, N338, N337], material: case4_soil, integration: SRI}
+    - {id: E290, type: QUAD4, nodes: [N297, N298, N339, N338], material: case4_soil, integration: SRI}
+    - {id: E291, type: QUAD4, nodes: [N298, N299, N340, N339], material: case4_soil, integration: SRI}
+    - {id: E292, type: QUAD4, nodes: [N299, N300, N341, N340], material: case4_soil, integration: SRI}
+    - {id: E293, type: QUAD4, nodes: [N300, N301, N342, N341], material: case4_soil, integration: SRI}
+    - {id: E294, type: QUAD4, nodes: [N301, N302, N343, N342], material: case4_soil, integration: SRI}
+    - {id: E295, type: QUAD4, nodes: [N302, N303, N344, N343], material: case4_soil, integration: SRI}
+    - {id: E296, type: QUAD4, nodes: [N303, N304, N345, N344], material: case4_soil, integration: SRI}
+    - {id: E297, type: QUAD4, nodes: [N304, N305, N346, N345], material: case4_soil, integration: SRI}
+    - {id: E298, type: QUAD4, nodes: [N305, N306, N347, N346], material: case4_soil, integration: SRI}
+    - {id: E299, type: QUAD4, nodes: [N306, N307, N348, N347], material: case4_soil, integration: SRI}
+    - {id: E300, type: QUAD4, nodes: [N307, N308, N349, N348], material: case4_soil, integration: SRI}
+    - {id: E301, type: QUAD4, nodes: [N308, N309, N350, N349], material: case4_soil, integration: SRI}
+    - {id: E302, type: QUAD4, nodes: [N309, N310, N351, N350], material: case4_soil, integration: SRI}
+    - {id: E303, type: QUAD4, nodes: [N310, N311, N352, N351], material: case4_soil, integration: SRI}
+    - {id: E304, type: QUAD4, nodes: [N311, N312, N353, N352], material: case4_soil, integration: SRI}
+    - {id: E305, type: QUAD4, nodes: [N312, N313, N354, N353], material: case4_soil, integration: SRI}
+    - {id: E306, type: QUAD4, nodes: [N313, N314, N355, N354], material: case4_soil, integration: SRI}
+    - {id: E307, type: QUAD4, nodes: [N314, N315, N356, N355], material: case4_soil, integration: SRI}
+    - {id: E308, type: QUAD4, nodes: [N315, N316, N357, N356], material: case4_soil, integration: SRI}
+    - {id: E309, type: QUAD4, nodes: [N316, N317, N358, N357], material: case4_soil, integration: SRI}
+    - {id: E310, type: QUAD4, nodes: [N317, N318, N359, N358], material: case4_soil, integration: SRI}
+    - {id: E311, type: QUAD4, nodes: [N318, N319, N360, N359], material: case4_soil, integration: SRI}
+    - {id: E312, type: QUAD4, nodes: [N319, N320, N361, N360], material: case4_soil, integration: SRI}
+    - {id: E313, type: QUAD4, nodes: [N320, N321, N362, N361], material: case4_soil, integration: SRI}
+    - {id: E314, type: QUAD4, nodes: [N321, N322, N363, N362], material: case4_soil, integration: SRI}
+    - {id: E315, type: QUAD4, nodes: [N322, N323, N364, N363], material: case4_soil, integration: SRI}
+    - {id: E316, type: QUAD4, nodes: [N323, N324, N365, N364], material: case4_soil, integration: SRI}
+    - {id: E317, type: QUAD4, nodes: [N324, N325, N366, N365], material: case4_soil, integration: SRI}
+    - {id: E318, type: QUAD4, nodes: [N325, N326, N367, N366], material: case4_soil, integration: SRI}
+    - {id: E319, type: QUAD4, nodes: [N326, N327, N368, N367], material: case4_soil, integration: SRI}
+    - {id: E320, type: QUAD4, nodes: [N327, N328, N369, N368], material: case4_soil, integration: SRI}
+    - {id: E321, type: QUAD4, nodes: [N329, N330, N371, N370], material: case4_soil, integration: SRI}
+    - {id: E322, type: QUAD4, nodes: [N330, N331, N372, N371], material: case4_soil, integration: SRI}
+    - {id: E323, type: QUAD4, nodes: [N331, N332, N373, N372], material: case4_soil, integration: SRI}
+    - {id: E324, type: QUAD4, nodes: [N332, N333, N374, N373], material: case4_soil, integration: SRI}
+    - {id: E325, type: QUAD4, nodes: [N333, N334, N375, N374], material: case4_soil, integration: SRI}
+    - {id: E326, type: QUAD4, nodes: [N334, N335, N376, N375], material: case4_soil, integration: SRI}
+    - {id: E327, type: QUAD4, nodes: [N335, N336, N377, N376], material: case4_soil, integration: SRI}
+    - {id: E328, type: QUAD4, nodes: [N336, N337, N378, N377], material: case4_soil, integration: SRI}
+    - {id: E329, type: QUAD4, nodes: [N337, N338, N379, N378], material: case4_soil, integration: SRI}
+    - {id: E330, type: QUAD4, nodes: [N338, N339, N380, N379], material: case4_soil, integration: SRI}
+    - {id: E331, type: QUAD4, nodes: [N339, N340, N381, N380], material: case4_soil, integration: SRI}
+    - {id: E332, type: QUAD4, nodes: [N340, N341, N382, N381], material: case4_soil, integration: SRI}
+    - {id: E333, type: QUAD4, nodes: [N341, N342, N383, N382], material: case4_soil, integration: SRI}
+    - {id: E334, type: QUAD4, nodes: [N342, N343, N384, N383], material: case4_soil, integration: SRI}
+    - {id: E335, type: QUAD4, nodes: [N343, N344, N385, N384], material: case4_soil, integration: SRI}
+    - {id: E336, type: QUAD4, nodes: [N344, N345, N386, N385], material: case4_soil, integration: SRI}
+    - {id: E337, type: QUAD4, nodes: [N345, N346, N387, N386], material: case4_soil, integration: SRI}
+    - {id: E338, type: QUAD4, nodes: [N346, N347, N388, N387], material: case4_soil, integration: SRI}
+    - {id: E339, type: QUAD4, nodes: [N347, N348, N389, N388], material: case4_soil, integration: SRI}
+    - {id: E340, type: QUAD4, nodes: [N348, N349, N390, N389], material: case4_soil, integration: SRI}
+    - {id: E341, type: QUAD4, nodes: [N349, N350, N391, N390], material: case4_soil, integration: SRI}
+    - {id: E342, type: QUAD4, nodes: [N350, N351, N392, N391], material: case4_soil, integration: SRI}
+    - {id: E343, type: QUAD4, nodes: [N351, N352, N393, N392], material: case4_soil, integration: SRI}
+    - {id: E344, type: QUAD4, nodes: [N352, N353, N394, N393], material: case4_soil, integration: SRI}
+    - {id: E345, type: QUAD4, nodes: [N353, N354, N395, N394], material: case4_soil, integration: SRI}
+    - {id: E346, type: QUAD4, nodes: [N354, N355, N396, N395], material: case4_soil, integration: SRI}
+    - {id: E347, type: QUAD4, nodes: [N355, N356, N397, N396], material: case4_soil, integration: SRI}
+    - {id: E348, type: QUAD4, nodes: [N356, N357, N398, N397], material: case4_soil, integration: SRI}
+    - {id: E349, type: QUAD4, nodes: [N357, N358, N399, N398], material: case4_soil, integration: SRI}
+    - {id: E350, type: QUAD4, nodes: [N358, N359, N400, N399], material: case4_soil, integration: SRI}
+    - {id: E351, type: QUAD4, nodes: [N359, N360, N401, N400], material: case4_soil, integration: SRI}
+    - {id: E352, type: QUAD4, nodes: [N360, N361, N402, N401], material: case4_soil, integration: SRI}
+    - {id: E353, type: QUAD4, nodes: [N370, N371, N404, N403], material: case4_soil, integration: SRI}
+    - {id: E354, type: QUAD4, nodes: [N371, N372, N405, N404], material: case4_soil, integration: SRI}
+    - {id: E355, type: QUAD4, nodes: [N372, N373, N406, N405], material: case4_soil, integration: SRI}
+    - {id: E356, type: QUAD4, nodes: [N373, N374, N407, N406], material: case4_soil, integration: SRI}
+    - {id: E357, type: QUAD4, nodes: [N374, N375, N408, N407], material: case4_soil, integration: SRI}
+    - {id: E358, type: QUAD4, nodes: [N375, N376, N409, N408], material: case4_soil, integration: SRI}
+    - {id: E359, type: QUAD4, nodes: [N376, N377, N410, N409], material: case4_soil, integration: SRI}
+    - {id: E360, type: QUAD4, nodes: [N377, N378, N411, N410], material: case4_soil, integration: SRI}
+    - {id: E361, type: QUAD4, nodes: [N378, N379, N412, N411], material: case4_soil, integration: SRI}
+    - {id: E362, type: QUAD4, nodes: [N379, N380, N413, N412], material: case4_soil, integration: SRI}
+    - {id: E363, type: QUAD4, nodes: [N380, N381, N414, N413], material: case4_soil, integration: SRI}
+    - {id: E364, type: QUAD4, nodes: [N381, N382, N415, N414], material: case4_soil, integration: SRI}
+    - {id: E365, type: QUAD4, nodes: [N382, N383, N416, N415], material: case4_soil, integration: SRI}
+    - {id: E366, type: QUAD4, nodes: [N383, N384, N417, N416], material: case4_soil, integration: SRI}
+    - {id: E367, type: QUAD4, nodes: [N384, N385, N418, N417], material: case4_soil, integration: SRI}
+    - {id: E368, type: QUAD4, nodes: [N385, N386, N419, N418], material: case4_soil, integration: SRI}
+    - {id: E369, type: QUAD4, nodes: [N386, N387, N420, N419], material: case4_soil, integration: SRI}
+    - {id: E370, type: QUAD4, nodes: [N387, N388, N421, N420], material: case4_soil, integration: SRI}
+    - {id: E371, type: QUAD4, nodes: [N388, N389, N422, N421], material: case4_soil, integration: SRI}
+    - {id: E372, type: QUAD4, nodes: [N389, N390, N423, N422], material: case4_soil, integration: SRI}
+    - {id: E373, type: QUAD4, nodes: [N390, N391, N424, N423], material: case4_soil, integration: SRI}
+    - {id: E374, type: QUAD4, nodes: [N391, N392, N425, N424], material: case4_soil, integration: SRI}
+    - {id: E375, type: QUAD4, nodes: [N392, N393, N426, N425], material: case4_soil, integration: SRI}
+    - {id: E376, type: QUAD4, nodes: [N393, N394, N427, N426], material: case4_soil, integration: SRI}
+    - {id: E377, type: QUAD4, nodes: [N394, N395, N428, N427], material: case4_soil, integration: SRI}
+    - {id: E378, type: QUAD4, nodes: [N395, N396, N429, N428], material: case4_soil, integration: SRI}
+    - {id: E379, type: QUAD4, nodes: [N396, N397, N430, N429], material: case4_soil, integration: SRI}
+    - {id: E380, type: QUAD4, nodes: [N397, N398, N431, N430], material: case4_soil, integration: SRI}
+    - {id: E381, type: QUAD4, nodes: [N398, N399, N432, N431], material: case4_soil, integration: SRI}
+    - {id: E382, type: QUAD4, nodes: [N399, N400, N433, N432], material: case4_soil, integration: SRI}
+    - {id: E383, type: QUAD4, nodes: [N400, N401, N434, N433], material: case4_soil, integration: SRI}
+    - {id: E384, type: QUAD4, nodes: [N401, N402, N435, N434], material: case4_soil, integration: SRI}
+    - {id: E385, type: QUAD4, nodes: [N403, N404, N437, N436], material: case4_soil, integration: SRI}
+    - {id: E386, type: QUAD4, nodes: [N404, N405, N438, N437], material: case4_soil, integration: SRI}
+    - {id: E387, type: QUAD4, nodes: [N405, N406, N439, N438], material: case4_soil, integration: SRI}
+    - {id: E388, type: QUAD4, nodes: [N406, N407, N440, N439], material: case4_soil, integration: SRI}
+    - {id: E389, type: QUAD4, nodes: [N407, N408, N441, N440], material: case4_soil, integration: SRI}
+    - {id: E390, type: QUAD4, nodes: [N408, N409, N442, N441], material: case4_soil, integration: SRI}
+    - {id: E391, type: QUAD4, nodes: [N409, N410, N443, N442], material: case4_soil, integration: SRI}
+    - {id: E392, type: QUAD4, nodes: [N410, N411, N444, N443], material: case4_soil, integration: SRI}
+    - {id: E393, type: QUAD4, nodes: [N411, N412, N445, N444], material: case4_soil, integration: SRI}
+    - {id: E394, type: QUAD4, nodes: [N412, N413, N446, N445], material: case4_soil, integration: SRI}
+    - {id: E395, type: QUAD4, nodes: [N413, N414, N447, N446], material: case4_soil, integration: SRI}
+    - {id: E396, type: QUAD4, nodes: [N414, N415, N448, N447], material: case4_soil, integration: SRI}
+    - {id: E397, type: QUAD4, nodes: [N415, N416, N449, N448], material: case4_soil, integration: SRI}
+    - {id: E398, type: QUAD4, nodes: [N416, N417, N450, N449], material: case4_soil, integration: SRI}
+    - {id: E399, type: QUAD4, nodes: [N417, N418, N451, N450], material: case4_soil, integration: SRI}
+    - {id: E400, type: QUAD4, nodes: [N418, N419, N452, N451], material: case4_soil, integration: SRI}
+    - {id: E401, type: QUAD4, nodes: [N419, N420, N453, N452], material: case4_soil, integration: SRI}
+    - {id: E402, type: QUAD4, nodes: [N420, N421, N454, N453], material: case4_soil, integration: SRI}
+    - {id: E403, type: QUAD4, nodes: [N421, N422, N455, N454], material: case4_soil, integration: SRI}
+    - {id: E404, type: QUAD4, nodes: [N422, N423, N456, N455], material: case4_soil, integration: SRI}
+    - {id: E405, type: QUAD4, nodes: [N423, N424, N457, N456], material: case4_soil, integration: SRI}
+    - {id: E406, type: QUAD4, nodes: [N424, N425, N458, N457], material: case4_soil, integration: SRI}
+    - {id: E407, type: QUAD4, nodes: [N425, N426, N459, N458], material: case4_soil, integration: SRI}
+    - {id: E408, type: QUAD4, nodes: [N426, N427, N460, N459], material: case4_soil, integration: SRI}
+    - {id: E409, type: QUAD4, nodes: [N427, N428, N461, N460], material: case4_soil, integration: SRI}
+    - {id: E410, type: QUAD4, nodes: [N428, N429, N462, N461], material: case4_soil, integration: SRI}
+    - {id: E411, type: QUAD4, nodes: [N429, N430, N463, N462], material: case4_soil, integration: SRI}
+    - {id: E412, type: QUAD4, nodes: [N430, N431, N464, N463], material: case4_soil, integration: SRI}
+    - {id: E413, type: QUAD4, nodes: [N431, N432, N465, N464], material: case4_soil, integration: SRI}
+    - {id: E414, type: QUAD4, nodes: [N432, N433, N466, N465], material: case4_soil, integration: SRI}
+    - {id: E415, type: QUAD4, nodes: [N433, N434, N467, N466], material: case4_soil, integration: SRI}
+    - {id: E416, type: QUAD4, nodes: [N434, N435, N468, N467], material: case4_soil, integration: SRI}
+    - {id: E417, type: QUAD4, nodes: [N436, N437, N470, N469], material: case4_soil, integration: SRI}
+    - {id: E418, type: QUAD4, nodes: [N437, N438, N471, N470], material: case4_soil, integration: SRI}
+    - {id: E419, type: QUAD4, nodes: [N438, N439, N472, N471], material: case4_soil, integration: SRI}
+    - {id: E420, type: QUAD4, nodes: [N439, N440, N473, N472], material: case4_soil, integration: SRI}
+    - {id: E421, type: QUAD4, nodes: [N440, N441, N474, N473], material: case4_soil, integration: SRI}
+    - {id: E422, type: QUAD4, nodes: [N441, N442, N475, N474], material: case4_soil, integration: SRI}
+    - {id: E423, type: QUAD4, nodes: [N442, N443, N476, N475], material: case4_soil, integration: SRI}
+    - {id: E424, type: QUAD4, nodes: [N443, N444, N477, N476], material: case4_soil, integration: SRI}
+    - {id: E425, type: QUAD4, nodes: [N444, N445, N478, N477], material: case4_soil, integration: SRI}
+    - {id: E426, type: QUAD4, nodes: [N445, N446, N479, N478], material: case4_soil, integration: SRI}
+    - {id: E427, type: QUAD4, nodes: [N446, N447, N480, N479], material: case4_soil, integration: SRI}
+    - {id: E428, type: QUAD4, nodes: [N447, N448, N481, N480], material: case4_soil, integration: SRI}
+    - {id: E429, type: QUAD4, nodes: [N448, N449, N482, N481], material: case4_soil, integration: SRI}
+    - {id: E430, type: QUAD4, nodes: [N449, N450, N483, N482], material: case4_soil, integration: SRI}
+    - {id: E431, type: QUAD4, nodes: [N450, N451, N484, N483], material: case4_soil, integration: SRI}
+    - {id: E432, type: QUAD4, nodes: [N451, N452, N485, N484], material: case4_soil, integration: SRI}
+    - {id: E433, type: QUAD4, nodes: [N452, N453, N486, N485], material: case4_soil, integration: SRI}
+    - {id: E434, type: QUAD4, nodes: [N453, N454, N487, N486], material: case4_soil, integration: SRI}
+    - {id: E435, type: QUAD4, nodes: [N454, N455, N488, N487], material: case4_soil, integration: SRI}
+    - {id: E436, type: QUAD4, nodes: [N455, N456, N489, N488], material: case4_soil, integration: SRI}
+    - {id: E437, type: QUAD4, nodes: [N456, N457, N490, N489], material: case4_soil, integration: SRI}
+    - {id: E438, type: QUAD4, nodes: [N457, N458, N491, N490], material: case4_soil, integration: SRI}
+    - {id: E439, type: QUAD4, nodes: [N458, N459, N492, N491], material: case4_soil, integration: SRI}
+    - {id: E440, type: QUAD4, nodes: [N459, N460, N493, N492], material: case4_soil, integration: SRI}
+    - {id: E441, type: QUAD4, nodes: [N460, N461, N494, N493], material: case4_soil, integration: SRI}
+    - {id: E442, type: QUAD4, nodes: [N461, N462, N495, N494], material: case4_soil, integration: SRI}
+    - {id: E443, type: QUAD4, nodes: [N462, N463, N496, N495], material: case4_soil, integration: SRI}
+    - {id: E444, type: QUAD4, nodes: [N463, N464, N497, N496], material: case4_soil, integration: SRI}
+    - {id: E445, type: QUAD4, nodes: [N464, N465, N498, N497], material: case4_soil, integration: SRI}
+    - {id: E446, type: QUAD4, nodes: [N465, N466, N499, N498], material: case4_soil, integration: SRI}
+    - {id: E447, type: QUAD4, nodes: [N466, N467, N500, N499], material: case4_soil, integration: SRI}
+    - {id: E448, type: QUAD4, nodes: [N467, N468, N501, N500], material: case4_soil, integration: SRI}
+    - {id: E449, type: QUAD4, nodes: [N469, N470, N503, N502], material: case4_soil, integration: SRI}
+    - {id: E450, type: QUAD4, nodes: [N470, N471, N504, N503], material: case4_soil, integration: SRI}
+    - {id: E451, type: QUAD4, nodes: [N471, N472, N505, N504], material: case4_soil, integration: SRI}
+    - {id: E452, type: QUAD4, nodes: [N472, N473, N506, N505], material: case4_soil, integration: SRI}
+    - {id: E453, type: QUAD4, nodes: [N473, N474, N507, N506], material: case4_soil, integration: SRI}
+    - {id: E454, type: QUAD4, nodes: [N474, N475, N508, N507], material: case4_soil, integration: SRI}
+    - {id: E455, type: QUAD4, nodes: [N475, N476, N509, N508], material: case4_soil, integration: SRI}
+    - {id: E456, type: QUAD4, nodes: [N476, N477, N510, N509], material: case4_soil, integration: SRI}
+    - {id: E457, type: QUAD4, nodes: [N477, N478, N511, N510], material: case4_soil, integration: SRI}
+    - {id: E458, type: QUAD4, nodes: [N478, N479, N512, N511], material: case4_soil, integration: SRI}
+    - {id: E459, type: QUAD4, nodes: [N479, N480, N513, N512], material: case4_soil, integration: SRI}
+    - {id: E460, type: QUAD4, nodes: [N480, N481, N514, N513], material: case4_soil, integration: SRI}
+    - {id: E461, type: QUAD4, nodes: [N481, N482, N515, N514], material: case4_soil, integration: SRI}
+    - {id: E462, type: QUAD4, nodes: [N482, N483, N516, N515], material: case4_soil, integration: SRI}
+    - {id: E463, type: QUAD4, nodes: [N483, N484, N517, N516], material: case4_soil, integration: SRI}
+    - {id: E464, type: QUAD4, nodes: [N484, N485, N518, N517], material: case4_soil, integration: SRI}
+    - {id: E465, type: QUAD4, nodes: [N485, N486, N519, N518], material: case4_soil, integration: SRI}
+    - {id: E466, type: QUAD4, nodes: [N486, N487, N520, N519], material: case4_soil, integration: SRI}
+    - {id: E467, type: QUAD4, nodes: [N487, N488, N521, N520], material: case4_soil, integration: SRI}
+    - {id: E468, type: QUAD4, nodes: [N488, N489, N522, N521], material: case4_soil, integration: SRI}
+    - {id: E469, type: QUAD4, nodes: [N489, N490, N523, N522], material: case4_soil, integration: SRI}
+    - {id: E470, type: QUAD4, nodes: [N490, N491, N524, N523], material: case4_soil, integration: SRI}
+    - {id: E471, type: QUAD4, nodes: [N491, N492, N525, N524], material: case4_soil, integration: SRI}
+    - {id: E472, type: QUAD4, nodes: [N492, N493, N526, N525], material: case4_soil, integration: SRI}
+    - {id: E473, type: QUAD4, nodes: [N493, N494, N527, N526], material: case4_soil, integration: SRI}
+    - {id: E474, type: QUAD4, nodes: [N494, N495, N528, N527], material: case4_soil, integration: SRI}
+    - {id: E475, type: QUAD4, nodes: [N495, N496, N529, N528], material: case4_soil, integration: SRI}
+    - {id: E476, type: QUAD4, nodes: [N496, N497, N530, N529], material: case4_soil, integration: SRI}
+    - {id: E477, type: QUAD4, nodes: [N497, N498, N531, N530], material: case4_soil, integration: SRI}
+    - {id: E478, type: QUAD4, nodes: [N498, N499, N532, N531], material: case4_soil, integration: SRI}
+    - {id: E479, type: QUAD4, nodes: [N499, N500, N533, N532], material: case4_soil, integration: SRI}
+    - {id: E480, type: QUAD4, nodes: [N500, N501, N534, N533], material: case4_soil, integration: SRI}
+    - {id: E481, type: QUAD4, nodes: [N502, N503, N536, N535], material: case4_soil, integration: SRI}
+    - {id: E482, type: QUAD4, nodes: [N503, N504, N537, N536], material: case4_soil, integration: SRI}
+    - {id: E483, type: QUAD4, nodes: [N504, N505, N538, N537], material: case4_soil, integration: SRI}
+    - {id: E484, type: QUAD4, nodes: [N505, N506, N539, N538], material: case4_soil, integration: SRI}
+    - {id: E485, type: QUAD4, nodes: [N506, N507, N540, N539], material: case4_soil, integration: SRI}
+    - {id: E486, type: QUAD4, nodes: [N507, N508, N541, N540], material: case4_soil, integration: SRI}
+    - {id: E487, type: QUAD4, nodes: [N508, N509, N542, N541], material: case4_soil, integration: SRI}
+    - {id: E488, type: QUAD4, nodes: [N509, N510, N543, N542], material: case4_soil, integration: SRI}
+    - {id: E489, type: QUAD4, nodes: [N510, N511, N544, N543], material: case4_soil, integration: SRI}
+    - {id: E490, type: QUAD4, nodes: [N511, N512, N545, N544], material: case4_soil, integration: SRI}
+    - {id: E491, type: QUAD4, nodes: [N512, N513, N546, N545], material: case4_soil, integration: SRI}
+    - {id: E492, type: QUAD4, nodes: [N513, N514, N547, N546], material: case4_soil, integration: SRI}
+    - {id: E493, type: QUAD4, nodes: [N514, N515, N548, N547], material: case4_soil, integration: SRI}
+    - {id: E494, type: QUAD4, nodes: [N515, N516, N549, N548], material: case4_soil, integration: SRI}
+    - {id: E495, type: QUAD4, nodes: [N516, N517, N550, N549], material: case4_soil, integration: SRI}
+    - {id: E496, type: QUAD4, nodes: [N517, N518, N551, N550], material: case4_soil, integration: SRI}
+    - {id: E497, type: QUAD4, nodes: [N518, N519, N552, N551], material: case4_soil, integration: SRI}
+    - {id: E498, type: QUAD4, nodes: [N519, N520, N553, N552], material: case4_soil, integration: SRI}
+    - {id: E499, type: QUAD4, nodes: [N520, N521, N554, N553], material: case4_soil, integration: SRI}
+    - {id: E500, type: QUAD4, nodes: [N521, N522, N555, N554], material: case4_soil, integration: SRI}
+    - {id: E501, type: QUAD4, nodes: [N522, N523, N556, N555], material: case4_soil, integration: SRI}
+    - {id: E502, type: QUAD4, nodes: [N523, N524, N557, N556], material: case4_soil, integration: SRI}
+    - {id: E503, type: QUAD4, nodes: [N524, N525, N558, N557], material: case4_soil, integration: SRI}
+    - {id: E504, type: QUAD4, nodes: [N525, N526, N559, N558], material: case4_soil, integration: SRI}
+    - {id: E505, type: QUAD4, nodes: [N526, N527, N560, N559], material: case4_soil, integration: SRI}
+    - {id: E506, type: QUAD4, nodes: [N527, N528, N561, N560], material: case4_soil, integration: SRI}
+    - {id: E507, type: QUAD4, nodes: [N528, N529, N562, N561], material: case4_soil, integration: SRI}
+    - {id: E508, type: QUAD4, nodes: [N529, N530, N563, N562], material: case4_soil, integration: SRI}
+    - {id: E509, type: QUAD4, nodes: [N530, N531, N564, N563], material: case4_soil, integration: SRI}
+    - {id: E510, type: QUAD4, nodes: [N531, N532, N565, N564], material: case4_soil, integration: SRI}
+    - {id: E511, type: QUAD4, nodes: [N532, N533, N566, N565], material: case4_soil, integration: SRI}
+    - {id: E512, type: QUAD4, nodes: [N533, N534, N567, N566], material: case4_soil, integration: SRI}
+    - {id: E513, type: QUAD4, nodes: [N535, N536, N569, N568], material: case4_soil, integration: SRI}
+    - {id: E514, type: QUAD4, nodes: [N536, N537, N570, N569], material: case4_soil, integration: SRI}
+    - {id: E515, type: QUAD4, nodes: [N537, N538, N571, N570], material: case4_soil, integration: SRI}
+    - {id: E516, type: QUAD4, nodes: [N538, N539, N572, N571], material: case4_soil, integration: SRI}
+    - {id: E517, type: QUAD4, nodes: [N539, N540, N573, N572], material: case4_soil, integration: SRI}
+    - {id: E518, type: QUAD4, nodes: [N540, N541, N574, N573], material: case4_soil, integration: SRI}
+    - {id: E519, type: QUAD4, nodes: [N541, N542, N575, N574], material: case4_soil, integration: SRI}
+    - {id: E520, type: QUAD4, nodes: [N542, N543, N576, N575], material: case4_soil, integration: SRI}
+    - {id: E521, type: QUAD4, nodes: [N543, N544, N577, N576], material: case4_soil, integration: SRI}
+    - {id: E522, type: QUAD4, nodes: [N544, N545, N578, N577], material: case4_soil, integration: SRI}
+    - {id: E523, type: QUAD4, nodes: [N545, N546, N579, N578], material: case4_soil, integration: SRI}
+    - {id: E524, type: QUAD4, nodes: [N546, N547, N580, N579], material: case4_soil, integration: SRI}
+    - {id: E525, type: QUAD4, nodes: [N547, N548, N581, N580], material: case4_soil, integration: SRI}
+    - {id: E526, type: QUAD4, nodes: [N548, N549, N582, N581], material: case4_soil, integration: SRI}
+    - {id: E527, type: QUAD4, nodes: [N549, N550, N583, N582], material: case4_soil, integration: SRI}
+    - {id: E528, type: QUAD4, nodes: [N550, N551, N584, N583], material: case4_soil, integration: SRI}
+    - {id: E529, type: QUAD4, nodes: [N551, N552, N585, N584], material: case4_soil, integration: SRI}
+    - {id: E530, type: QUAD4, nodes: [N552, N553, N586, N585], material: case4_soil, integration: SRI}
+    - {id: E531, type: QUAD4, nodes: [N553, N554, N587, N586], material: case4_soil, integration: SRI}
+    - {id: E532, type: QUAD4, nodes: [N554, N555, N588, N587], material: case4_soil, integration: SRI}
+    - {id: E533, type: QUAD4, nodes: [N555, N556, N589, N588], material: case4_soil, integration: SRI}
+    - {id: E534, type: QUAD4, nodes: [N556, N557, N590, N589], material: case4_soil, integration: SRI}
+    - {id: E535, type: QUAD4, nodes: [N557, N558, N591, N590], material: case4_soil, integration: SRI}
+    - {id: E536, type: QUAD4, nodes: [N558, N559, N592, N591], material: case4_soil, integration: SRI}
+    - {id: E537, type: QUAD4, nodes: [N559, N560, N593, N592], material: case4_soil, integration: SRI}
+    - {id: E538, type: QUAD4, nodes: [N560, N561, N594, N593], material: case4_soil, integration: SRI}
+    - {id: E539, type: QUAD4, nodes: [N561, N562, N595, N594], material: case4_soil, integration: SRI}
+    - {id: E540, type: QUAD4, nodes: [N562, N563, N596, N595], material: case4_soil, integration: SRI}
+    - {id: E541, type: QUAD4, nodes: [N563, N564, N597, N596], material: case4_soil, integration: SRI}
+    - {id: E542, type: QUAD4, nodes: [N564, N565, N598, N597], material: case4_soil, integration: SRI}
+    - {id: E543, type: QUAD4, nodes: [N565, N566, N599, N598], material: case4_soil, integration: SRI}
+    - {id: E544, type: QUAD4, nodes: [N566, N567, N600, N599], material: case4_soil, integration: SRI}
+    - {id: E545, type: QUAD4, nodes: [N568, N569, N602, N601], material: case4_soil, integration: SRI}
+    - {id: E546, type: QUAD4, nodes: [N569, N570, N603, N602], material: case4_soil, integration: SRI}
+    - {id: E547, type: QUAD4, nodes: [N570, N571, N604, N603], material: case4_soil, integration: SRI}
+    - {id: E548, type: QUAD4, nodes: [N571, N572, N605, N604], material: case4_soil, integration: SRI}
+    - {id: E549, type: QUAD4, nodes: [N572, N573, N606, N605], material: case4_soil, integration: SRI}
+    - {id: E550, type: QUAD4, nodes: [N573, N574, N607, N606], material: case4_soil, integration: SRI}
+    - {id: E551, type: QUAD4, nodes: [N574, N575, N608, N607], material: case4_soil, integration: SRI}
+    - {id: E552, type: QUAD4, nodes: [N575, N576, N609, N608], material: case4_soil, integration: SRI}
+    - {id: E553, type: QUAD4, nodes: [N576, N577, N610, N609], material: case4_soil, integration: SRI}
+    - {id: E554, type: QUAD4, nodes: [N577, N578, N611, N610], material: case4_soil, integration: SRI}
+    - {id: E555, type: QUAD4, nodes: [N578, N579, N612, N611], material: case4_soil, integration: SRI}
+    - {id: E556, type: QUAD4, nodes: [N579, N580, N613, N612], material: case4_soil, integration: SRI}
+    - {id: E557, type: QUAD4, nodes: [N580, N581, N614, N613], material: case4_soil, integration: SRI}
+    - {id: E558, type: QUAD4, nodes: [N581, N582, N615, N614], material: case4_soil, integration: SRI}
+    - {id: E559, type: QUAD4, nodes: [N582, N583, N616, N615], material: case4_soil, integration: SRI}
+    - {id: E560, type: QUAD4, nodes: [N583, N584, N617, N616], material: case4_soil, integration: SRI}
+    - {id: E561, type: QUAD4, nodes: [N584, N585, N618, N617], material: case4_soil, integration: SRI}
+    - {id: E562, type: QUAD4, nodes: [N585, N586, N619, N618], material: case4_soil, integration: SRI}
+    - {id: E563, type: QUAD4, nodes: [N586, N587, N620, N619], material: case4_soil, integration: SRI}
+    - {id: E564, type: QUAD4, nodes: [N587, N588, N621, N620], material: case4_soil, integration: SRI}
+    - {id: E565, type: QUAD4, nodes: [N588, N589, N622, N621], material: case4_soil, integration: SRI}
+    - {id: E566, type: QUAD4, nodes: [N589, N590, N623, N622], material: case4_soil, integration: SRI}
+    - {id: E567, type: QUAD4, nodes: [N590, N591, N624, N623], material: case4_soil, integration: SRI}
+    - {id: E568, type: QUAD4, nodes: [N591, N592, N625, N624], material: case4_soil, integration: SRI}
+    - {id: E569, type: QUAD4, nodes: [N592, N593, N626, N625], material: case4_soil, integration: SRI}
+    - {id: E570, type: QUAD4, nodes: [N593, N594, N627, N626], material: case4_soil, integration: SRI}
+    - {id: E571, type: QUAD4, nodes: [N594, N595, N628, N627], material: case4_soil, integration: SRI}
+    - {id: E572, type: QUAD4, nodes: [N595, N596, N629, N628], material: case4_soil, integration: SRI}
+    - {id: E573, type: QUAD4, nodes: [N596, N597, N630, N629], material: case4_soil, integration: SRI}
+    - {id: E574, type: QUAD4, nodes: [N597, N598, N631, N630], material: case4_soil, integration: SRI}
+    - {id: E575, type: QUAD4, nodes: [N598, N599, N632, N631], material: case4_soil, integration: SRI}
+    - {id: E576, type: QUAD4, nodes: [N599, N600, N633, N632], material: case4_soil, integration: SRI}
+    - {id: E577, type: QUAD4, nodes: [N601, N602, N635, N634], material: case4_soil, integration: SRI}
+    - {id: E578, type: QUAD4, nodes: [N602, N603, N636, N635], material: case4_soil, integration: SRI}
+    - {id: E579, type: QUAD4, nodes: [N603, N604, N637, N636], material: case4_soil, integration: SRI}
+    - {id: E580, type: QUAD4, nodes: [N604, N605, N638, N637], material: case4_soil, integration: SRI}
+    - {id: E581, type: QUAD4, nodes: [N605, N606, N639, N638], material: case4_soil, integration: SRI}
+    - {id: E582, type: QUAD4, nodes: [N606, N607, N640, N639], material: case4_soil, integration: SRI}
+    - {id: E583, type: QUAD4, nodes: [N607, N608, N641, N640], material: case4_soil, integration: SRI}
+    - {id: E584, type: QUAD4, nodes: [N608, N609, N642, N641], material: case4_soil, integration: SRI}
+    - {id: E585, type: QUAD4, nodes: [N609, N610, N643, N642], material: case4_soil, integration: SRI}
+    - {id: E586, type: QUAD4, nodes: [N610, N611, N644, N643], material: case4_soil, integration: SRI}
+    - {id: E587, type: QUAD4, nodes: [N611, N612, N645, N644], material: case4_soil, integration: SRI}
+    - {id: E588, type: QUAD4, nodes: [N612, N613, N646, N645], material: case4_soil, integration: SRI}
+    - {id: E589, type: QUAD4, nodes: [N613, N614, N647, N646], material: case4_soil, integration: SRI}
+    - {id: E590, type: QUAD4, nodes: [N614, N615, N648, N647], material: case4_soil, integration: SRI}
+    - {id: E591, type: QUAD4, nodes: [N615, N616, N649, N648], material: case4_soil, integration: SRI}
+    - {id: E592, type: QUAD4, nodes: [N616, N617, N650, N649], material: case4_soil, integration: SRI}
+    - {id: E593, type: QUAD4, nodes: [N617, N618, N651, N650], material: case4_soil, integration: SRI}
+    - {id: E594, type: QUAD4, nodes: [N618, N619, N652, N651], material: case4_soil, integration: SRI}
+    - {id: E595, type: QUAD4, nodes: [N619, N620, N653, N652], material: case4_soil, integration: SRI}
+    - {id: E596, type: QUAD4, nodes: [N620, N621, N654, N653], material: case4_soil, integration: SRI}
+    - {id: E597, type: QUAD4, nodes: [N621, N622, N655, N654], material: case4_soil, integration: SRI}
+    - {id: E598, type: QUAD4, nodes: [N622, N623, N656, N655], material: case4_soil, integration: SRI}
+    - {id: E599, type: QUAD4, nodes: [N623, N624, N657, N656], material: case4_soil, integration: SRI}
+    - {id: E600, type: QUAD4, nodes: [N624, N625, N658, N657], material: case4_soil, integration: SRI}
+    - {id: E601, type: QUAD4, nodes: [N625, N626, N659, N658], material: case4_soil, integration: SRI}
+    - {id: E602, type: QUAD4, nodes: [N626, N627, N660, N659], material: case4_soil, integration: SRI}
+    - {id: E603, type: QUAD4, nodes: [N627, N628, N661, N660], material: case4_soil, integration: SRI}
+    - {id: E604, type: QUAD4, nodes: [N628, N629, N662, N661], material: case4_soil, integration: SRI}
+    - {id: E605, type: QUAD4, nodes: [N629, N630, N663, N662], material: case4_soil, integration: SRI}
+    - {id: E606, type: QUAD4, nodes: [N630, N631, N664, N663], material: case4_soil, integration: SRI}
+    - {id: E607, type: QUAD4, nodes: [N631, N632, N665, N664], material: case4_soil, integration: SRI}
+    - {id: E608, type: QUAD4, nodes: [N632, N633, N666, N665], material: case4_soil, integration: SRI}
+    - {id: E609, type: QUAD4, nodes: [N634, N635, N668, N667], material: case4_soil, integration: SRI}
+    - {id: E610, type: QUAD4, nodes: [N635, N636, N669, N668], material: case4_soil, integration: SRI}
+    - {id: E611, type: QUAD4, nodes: [N636, N637, N670, N669], material: case4_soil, integration: SRI}
+    - {id: E612, type: QUAD4, nodes: [N637, N638, N671, N670], material: case4_soil, integration: SRI}
+    - {id: E613, type: QUAD4, nodes: [N638, N639, N672, N671], material: case4_soil, integration: SRI}
+    - {id: E614, type: QUAD4, nodes: [N639, N640, N673, N672], material: case4_soil, integration: SRI}
+    - {id: E615, type: QUAD4, nodes: [N640, N641, N674, N673], material: case4_soil, integration: SRI}
+    - {id: E616, type: QUAD4, nodes: [N641, N642, N675, N674], material: case4_soil, integration: SRI}
+    - {id: E617, type: QUAD4, nodes: [N642, N643, N676, N675], material: case4_soil, integration: SRI}
+    - {id: E618, type: QUAD4, nodes: [N643, N644, N677, N676], material: case4_soil, integration: SRI}
+    - {id: E619, type: QUAD4, nodes: [N644, N645, N678, N677], material: case4_soil, integration: SRI}
+    - {id: E620, type: QUAD4, nodes: [N645, N646, N679, N678], material: case4_soil, integration: SRI}
+    - {id: E621, type: QUAD4, nodes: [N646, N647, N680, N679], material: case4_soil, integration: SRI}
+    - {id: E622, type: QUAD4, nodes: [N647, N648, N681, N680], material: case4_soil, integration: SRI}
+    - {id: E623, type: QUAD4, nodes: [N648, N649, N682, N681], material: case4_soil, integration: SRI}
+    - {id: E624, type: QUAD4, nodes: [N649, N650, N683, N682], material: case4_soil, integration: SRI}
+    - {id: E625, type: QUAD4, nodes: [N650, N651, N684, N683], material: case4_soil, integration: SRI}
+    - {id: E626, type: QUAD4, nodes: [N651, N652, N685, N684], material: case4_soil, integration: SRI}
+    - {id: E627, type: QUAD4, nodes: [N652, N653, N686, N685], material: case4_soil, integration: SRI}
+    - {id: E628, type: QUAD4, nodes: [N653, N654, N687, N686], material: case4_soil, integration: SRI}
+    - {id: E629, type: QUAD4, nodes: [N654, N655, N688, N687], material: case4_soil, integration: SRI}
+    - {id: E630, type: QUAD4, nodes: [N655, N656, N689, N688], material: case4_soil, integration: SRI}
+    - {id: E631, type: QUAD4, nodes: [N656, N657, N690, N689], material: case4_soil, integration: SRI}
+    - {id: E632, type: QUAD4, nodes: [N657, N658, N691, N690], material: case4_soil, integration: SRI}
+    - {id: E633, type: QUAD4, nodes: [N658, N659, N692, N691], material: case4_soil, integration: SRI}
+    - {id: E634, type: QUAD4, nodes: [N659, N660, N693, N692], material: case4_soil, integration: SRI}
+    - {id: E635, type: QUAD4, nodes: [N660, N661, N694, N693], material: case4_soil, integration: SRI}
+    - {id: E636, type: QUAD4, nodes: [N661, N662, N695, N694], material: case4_soil, integration: SRI}
+    - {id: E637, type: QUAD4, nodes: [N662, N663, N696, N695], material: case4_soil, integration: SRI}
+    - {id: E638, type: QUAD4, nodes: [N663, N664, N697, N696], material: case4_soil, integration: SRI}
+    - {id: E639, type: QUAD4, nodes: [N664, N665, N698, N697], material: case4_soil, integration: SRI}
+    - {id: E640, type: QUAD4, nodes: [N665, N666, N699, N698], material: case4_soil, integration: SRI}
+    - {id: E641, type: QUAD4, nodes: [N667, N668, N701, N700], material: case4_soil, integration: SRI}
+    - {id: E642, type: QUAD4, nodes: [N668, N669, N702, N701], material: case4_soil, integration: SRI}
+    - {id: E643, type: QUAD4, nodes: [N669, N670, N703, N702], material: case4_soil, integration: SRI}
+    - {id: E644, type: QUAD4, nodes: [N670, N671, N704, N703], material: case4_soil, integration: SRI}
+    - {id: E645, type: QUAD4, nodes: [N671, N672, N705, N704], material: case4_soil, integration: SRI}
+    - {id: E646, type: QUAD4, nodes: [N672, N673, N706, N705], material: case4_soil, integration: SRI}
+    - {id: E647, type: QUAD4, nodes: [N673, N674, N707, N706], material: case4_soil, integration: SRI}
+    - {id: E648, type: QUAD4, nodes: [N674, N675, N708, N707], material: case4_soil, integration: SRI}
+    - {id: E649, type: QUAD4, nodes: [N675, N676, N709, N708], material: case4_soil, integration: SRI}
+    - {id: E650, type: QUAD4, nodes: [N676, N677, N710, N709], material: case4_soil, integration: SRI}
+    - {id: E651, type: QUAD4, nodes: [N677, N678, N711, N710], material: case4_soil, integration: SRI}
+    - {id: E652, type: QUAD4, nodes: [N678, N679, N712, N711], material: case4_soil, integration: SRI}
+    - {id: E653, type: QUAD4, nodes: [N679, N680, N713, N712], material: case4_soil, integration: SRI}
+    - {id: E654, type: QUAD4, nodes: [N680, N681, N714, N713], material: case4_soil, integration: SRI}
+    - {id: E655, type: QUAD4, nodes: [N681, N682, N715, N714], material: case4_soil, integration: SRI}
+    - {id: E656, type: QUAD4, nodes: [N682, N683, N716, N715], material: case4_soil, integration: SRI}
+    - {id: E657, type: QUAD4, nodes: [N683, N684, N717, N716], material: case4_soil, integration: SRI}
+    - {id: E658, type: QUAD4, nodes: [N684, N685, N718, N717], material: case4_soil, integration: SRI}
+    - {id: E659, type: QUAD4, nodes: [N685, N686, N719, N718], material: case4_soil, integration: SRI}
+    - {id: E660, type: QUAD4, nodes: [N686, N687, N720, N719], material: case4_soil, integration: SRI}
+    - {id: E661, type: QUAD4, nodes: [N687, N688, N721, N720], material: case4_soil, integration: SRI}
+    - {id: E662, type: QUAD4, nodes: [N688, N689, N722, N721], material: case4_soil, integration: SRI}
+    - {id: E663, type: QUAD4, nodes: [N689, N690, N723, N722], material: case4_soil, integration: SRI}
+    - {id: E664, type: QUAD4, nodes: [N690, N691, N724, N723], material: case4_soil, integration: SRI}
+    - {id: E665, type: QUAD4, nodes: [N691, N692, N725, N724], material: case4_soil, integration: SRI}
+    - {id: E666, type: QUAD4, nodes: [N692, N693, N726, N725], material: case4_soil, integration: SRI}
+    - {id: E667, type: QUAD4, nodes: [N693, N694, N727, N726], material: case4_soil, integration: SRI}
+    - {id: E668, type: QUAD4, nodes: [N694, N695, N728, N727], material: case4_soil, integration: SRI}
+    - {id: E669, type: QUAD4, nodes: [N695, N696, N729, N728], material: case4_soil, integration: SRI}
+    - {id: E670, type: QUAD4, nodes: [N696, N697, N730, N729], material: case4_soil, integration: SRI}
+    - {id: E671, type: QUAD4, nodes: [N697, N698, N731, N730], material: case4_soil, integration: SRI}
+    - {id: E672, type: QUAD4, nodes: [N698, N699, N732, N731], material: case4_soil, integration: SRI}
+    - {id: E673, type: QUAD4, nodes: [N700, N701, N734, N733], material: case4_soil, integration: SRI}
+    - {id: E674, type: QUAD4, nodes: [N701, N702, N735, N734], material: case4_soil, integration: SRI}
+    - {id: E675, type: QUAD4, nodes: [N702, N703, N736, N735], material: case4_soil, integration: SRI}
+    - {id: E676, type: QUAD4, nodes: [N703, N704, N737, N736], material: case4_soil, integration: SRI}
+    - {id: E677, type: QUAD4, nodes: [N704, N705, N738, N737], material: case4_soil, integration: SRI}
+    - {id: E678, type: QUAD4, nodes: [N705, N706, N739, N738], material: case4_soil, integration: SRI}
+    - {id: E679, type: QUAD4, nodes: [N706, N707, N740, N739], material: case4_soil, integration: SRI}
+    - {id: E680, type: QUAD4, nodes: [N707, N708, N741, N740], material: case4_soil, integration: SRI}
+    - {id: E681, type: QUAD4, nodes: [N708, N709, N742, N741], material: case4_soil, integration: SRI}
+    - {id: E682, type: QUAD4, nodes: [N709, N710, N743, N742], material: case4_soil, integration: SRI}
+    - {id: E683, type: QUAD4, nodes: [N710, N711, N744, N743], material: case4_soil, integration: SRI}
+    - {id: E684, type: QUAD4, nodes: [N711, N712, N745, N744], material: case4_soil, integration: SRI}
+    - {id: E685, type: QUAD4, nodes: [N712, N713, N746, N745], material: case4_soil, integration: SRI}
+    - {id: E686, type: QUAD4, nodes: [N713, N714, N747, N746], material: case4_soil, integration: SRI}
+    - {id: E687, type: QUAD4, nodes: [N714, N715, N748, N747], material: case4_soil, integration: SRI}
+    - {id: E688, type: QUAD4, nodes: [N715, N716, N749, N748], material: case4_soil, integration: SRI}
+    - {id: E689, type: QUAD4, nodes: [N716, N717, N750, N749], material: case4_soil, integration: SRI}
+    - {id: E690, type: QUAD4, nodes: [N717, N718, N751, N750], material: case4_soil, integration: SRI}
+    - {id: E691, type: QUAD4, nodes: [N718, N719, N752, N751], material: case4_soil, integration: SRI}
+    - {id: E692, type: QUAD4, nodes: [N719, N720, N753, N752], material: case4_soil, integration: SRI}
+    - {id: E693, type: QUAD4, nodes: [N720, N721, N754, N753], material: case4_soil, integration: SRI}
+    - {id: E694, type: QUAD4, nodes: [N721, N722, N755, N754], material: case4_soil, integration: SRI}
+    - {id: E695, type: QUAD4, nodes: [N722, N723, N756, N755], material: case4_soil, integration: SRI}
+    - {id: E696, type: QUAD4, nodes: [N723, N724, N757, N756], material: case4_soil, integration: SRI}
+    - {id: E697, type: QUAD4, nodes: [N724, N725, N758, N757], material: case4_soil, integration: SRI}
+    - {id: E698, type: QUAD4, nodes: [N725, N726, N759, N758], material: case4_soil, integration: SRI}
+    - {id: E699, type: QUAD4, nodes: [N726, N727, N760, N759], material: case4_soil, integration: SRI}
+    - {id: E700, type: QUAD4, nodes: [N727, N728, N761, N760], material: case4_soil, integration: SRI}
+    - {id: E701, type: QUAD4, nodes: [N728, N729, N762, N761], material: case4_soil, integration: SRI}
+    - {id: E702, type: QUAD4, nodes: [N729, N730, N763, N762], material: case4_soil, integration: SRI}
+    - {id: E703, type: QUAD4, nodes: [N730, N731, N764, N763], material: case4_soil, integration: SRI}
+    - {id: E704, type: QUAD4, nodes: [N731, N732, N765, N764], material: case4_soil, integration: SRI}
+  node_sets:
+    left: [N1, N42, N83, N124, N165, N206, N247, N288, N329, N370, N403, N436, N469, N502, N535, N568, N601, N634, N667, N700, N733]
+    right_vertical: [N41, N82, N123, N164, N205, N246, N287, N328, N369]
+    bottom: [N1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N13, N14, N15, N16, N17, N18, N19, N20, N21, N22, N23, N24, N25, N26, N27, N28, N29, N30, N31, N32, N33, N34, N35, N36, N37, N38, N39, N40, N41]
+    free_surface: [N361, N362, N363, N364, N365, N366, N367, N368, N369, N402, N435, N468, N501, N534, N567, N600, N633, N666, N699, N732, N765, N733, N734, N735, N736, N737, N738, N739, N740, N741, N742, N743, N744, N745, N746, N747, N748, N749, N750, N751, N752, N753, N754, N755, N756, N757, N758, N759, N760, N761, N762, N763, N764]
+sets:
+  nodes:
+    left: [N1, N42, N83, N124, N165, N206, N247, N288, N329, N370, N403, N436, N469, N502, N535, N568, N601, N634, N667, N700, N733]
+    right_vertical: [N41, N82, N123, N164, N205, N246, N287, N328, N369]
+    bottom: [N1, N2, N3, N4, N5, N6, N7, N8, N9, N10, N11, N12, N13, N14, N15, N16, N17, N18, N19, N20, N21, N22, N23, N24, N25, N26, N27, N28, N29, N30, N31, N32, N33, N34, N35, N36, N37, N38, N39, N40, N41]
+    free_surface: [N361, N362, N363, N364, N365, N366, N367, N368, N369, N402, N435, N468, N501, N534, N567, N600, N633, N666, N699, N732, N765, N733, N734, N735, N736, N737, N738, N739, N740, N741, N742, N743, N744, N745, N746, N747, N748, N749, N750, N751, N752, N753, N754, N755, N756, N757, N758, N759, N760, N761, N762, N763, N764]
+materials:
+  case4_soil:
+    model: mohr_coulomb
+    E: 14000.0
+    nu: 0.30
+    gamma: 20.0
+    cohesion: 20.0
+    friction_angle: 35.0
+    dilation_angle: 0.0
+    mohr_coulomb_apex_policy: legacy_bounded
+    hardening: 0.0
+    tension_cutoff: false
+boundary_conditions:
+  - name: base_fixed
+    set: bottom
+    ux: 0.0
+    uy: 0.0
+  - name: left_roller
+    set: left
+    ux: 0.0
+  - name: right_vertical_roller
+    set: right_vertical
+    ux: 0.0
+loads:
+  - name: self_weight
+    type: gravity
+    all: true
+    gx: 0.0
+    gy: -1.0
+    scale: 1.0
+solver:
+  tangent: analytic
+  newton:
+    max_iter: 80
+    tol_rel: 1.0e-7
+    tol_abs: 1.0e-9
+    line_search: true
+    max_line_search: 10
+  increments:
+    enabled: true
+    steps: 20
+    max_cutbacks: 12
+    cutback_factor: 0.5
+    growth: 1.2
+    min_step: 1.0e-5
+stages:
+  - name: case4_srm_strength_reduction
+    type: srm
+    description: Strength reduction search for the Case 4 homogeneous slope benchmark.
+    srm:
+      search_mode: auto
+      anchor_factor: 1.0
+      bracket_stride: 5
+      factor_tol: 0.005
+      max_bisection: 10
+      lower_branch:
+        factor_min: 0.4
+        factor_step: 0.05
+      upper_branch:
+        factor_max: 2.8
+        factor_step: 0.02
+      factor_start: 1.0
+      factor_max: 2.8
+      factor_step: 0.02
+      failure_plastic_ratio: 1.0
+      progress_stdout: true
+      parallel:
+        enabled: true
+        policy: auto
+        strategy: lookahead
+        preserve_decision_order: true
+        max_workers: auto
+        gui_reserve_workers: 1
+        memory_fraction: 0.70
+        lookahead_depth: auto
+        bisection_speculation: true
+      auto:
+        enabled: true
+        decision_source: trial_log_diagnostics
+        retry_suspect_failures: true
+        max_suspect_retries: 1
+        suspect_last_load_threshold: 0.90
+        confirmed_last_load_threshold: 0.95
+        confirmed_cluster_fraction: 0.50
+        confirmed_plastic_ratio: 0.50
+        strong_plastic_ratio: 0.70
+        strong_cluster_fraction: 0.65
+        stable_regression_ratio: 0.85
+        retry_newton_max_iter_multiplier: 1.25
+        retry_max_line_search_multiplier: 1.25
+        retry_steps_multiplier: 2.0
+        retry_extra_cutbacks: 6
+        retry_min_step_factor: 0.5
+        lower_projection_enabled: true
+        lower_projection_multipliers: [0.98, 1.10, 1.20]
+        lower_projection_max_probes: 3
+    solver:
+      newton:
+        max_iter: 80
+        tol_rel: 1.0e-7
+        tol_abs: 1.0e-9
+        line_search: true
+        max_line_search: 20
+        min_line_search_alpha: 1.0e-6
+      increments:
+        enabled: true
+        steps: 20
+        max_cutbacks: 12
+        cutback_factor: 0.5
+        growth: 1.2
+        min_step: 1.0e-5
+post:
+  srm:
+    slope_direction: left-to-right
+    min_candidate_length: 4.0
+    max_circle_radius: 30.0
+    require_boundary_exit: true
+  result_fields: [displacement, plastic, yield_value, FL, srm_slip_candidates]
+output:
+  directory: runs/sustainability_2024_case4_quad4_sri_auto_srm
+  lazy_reports: true
+
+

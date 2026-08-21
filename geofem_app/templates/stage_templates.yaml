@@ -1,0 +1,105 @@
+stage_template_library:
+  "Road retaining excavation: standard braced cut":
+    type: death
+    standard: road_earthwork
+    business: retaining_excavation
+    set: excavation_lift
+    stress_release: 0.35
+    boundary_conditions:
+      - set: strut_level_1
+        ux: 0.0
+    loads:
+      - type: gravity
+        scale: 1.0
+    construction_events:
+      - action: excavation
+        set: excavation_lift
+        stress_release: 0.35
+  "Railway embankment: staged fill and train load":
+    type: static
+    standard: railway_earth_structure
+    business: embankment
+    element_properties:
+      - set: fill_lift
+        material: fill
+    loads:
+      - type: gravity
+        scale: 1.0
+      - set: rail_surcharge
+        fy: -80.0
+        load_case: train
+  "Port quay wall: water pressure update":
+    type: consolidation
+    standard: port_harbor
+    business: quay_wall
+    hydro:
+      pressure_bcs:
+        - set: sea_side
+          pressure: -10.0
+      pore_flux_bcs: []
+      pore_robin_bcs:
+        - set: drain
+          beta: 1.0
+          pressure: 0.0
+  "River levee: rapid drawdown check":
+    type: consolidation
+    standard: river_levee
+    business: water_level_change
+    hydro:
+      pressure_bcs:
+        - set: river_side
+          pressure: 0.0
+        - set: land_side
+          pressure: -5.0
+  "Building basement: excavation and support":
+    type: death
+    standard: building_foundation
+    business: basement_excavation
+    set: basement_cut
+    stress_release: 0.5
+    boundary_conditions:
+      - set: diaphragm_wall
+        ux: 0.0
+    construction_events:
+      - action: excavation
+        set: basement_cut
+        stress_release: 0.5
+  "Tunnel NATM: invert closure":
+    type: static
+    standard: tunnel_natm
+    business: support_closure
+    element_properties:
+      - set: invert_support
+        material: shotcrete
+    boundary_conditions:
+      - set: invert_contact
+        uy: 0.0
+  "Slope stability: rainfall SRM":
+    type: srm
+    standard: slope_design
+    business: rainfall_stability
+    srm:
+      search_mode: adaptive_bracket
+      anchor_factor: 1.0
+      bracket_stride: 5
+      factor_tol: 0.01
+      max_bisection: 6
+      start: 1.0
+      end: 3.0
+      step: 0.02
+    hydro:
+      pressure_bcs:
+        - set: slope_surface
+          pressure: 0.0
+  "Soft ground improvement: preload and drain":
+    type: consolidation
+    standard: soft_ground_improvement
+    business: preload_vertical_drain
+    loads:
+      - set: preload
+        fy: -30.0
+    hydro:
+      pore_robin_bcs:
+        - set: vertical_drain
+          beta: 1.0
+          pressure: 0.0

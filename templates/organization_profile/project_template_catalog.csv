@@ -1,0 +1,4 @@
+id,label,domain,solver_route,unit_system,report_template,description
+geofem_review,GeoFEM 2D review template,general_geotechnical,GeoFEM 2D,m-kN,organization_review_a4,Static plane-strain review with organization report defaults and Post palette.
+geofeas_public_submission,GeoFEAS public substitute submission,geo_feas_public_substitute,GeoFEM 2D,m-kN,client_submission_a3,Public-information-based GeoFEAS substitute workflow with calculation report bundle.
+vgflow_seepage,VGFlow2D seepage handoff template,seepage,VGFlow2D public substitute,m-kN,organization_review_a4,Transient seepage settings and report defaults for VGFlow2D substitute handoff.

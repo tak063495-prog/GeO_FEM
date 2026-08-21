@@ -1,0 +1,32 @@
+{
+  "schema": "geofem.project_template_catalog.v1",
+  "templates": [
+    {
+      "id": "geofem_review",
+      "label": "GeoFEM 2D review template",
+      "domain": "general_geotechnical",
+      "solver_route": "GeoFEM 2D",
+      "unit_system": "m-kN",
+      "report_template": "organization_review_a4",
+      "description": "Static plane-strain review with organization report defaults and Post palette."
+    },
+    {
+      "id": "geofeas_public_submission",
+      "label": "GeoFEAS public substitute submission",
+      "domain": "geo_feas_public_substitute",
+      "solver_route": "GeoFEM 2D",
+      "unit_system": "m-kN",
+      "report_template": "client_submission_a3",
+      "description": "Public-information-based GeoFEAS substitute workflow with calculation report bundle."
+    },
+    {
+      "id": "vgflow_seepage",
+      "label": "VGFlow2D seepage handoff template",
+      "domain": "seepage",
+      "solver_route": "VGFlow2D public substitute",
+      "unit_system": "m-kN",
+      "report_template": "organization_review_a4",
+      "description": "Transient seepage settings and report defaults for VGFlow2D substitute handoff."
+    }
+  ]
+}

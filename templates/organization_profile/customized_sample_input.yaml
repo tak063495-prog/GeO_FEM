@@ -1,0 +1,74 @@
+analysis:
+  dimension: 2D
+  type: static_plane_strain
+  unit_system: m-kN
+mesh:
+  generator: rectangle
+  x_range:
+  - 0.0
+  - 10.0
+  y_range:
+  - 0.0
+  - 2.0
+  nx: 8
+  ny: 2
+  element_type: QUAD4
+  integration: B-bar
+  material: soil
+materials:
+  soil:
+    model: elastic
+    E: 50000.0
+    nu: 0.33
+    gamma: 18.0
+boundary_conditions:
+- set: left
+  ux: 0.0
+  uy: 0.0
+- set: bottom
+  uy: 0.0
+loads:
+- edge:
+  - '9'
+  - '18'
+  ty: -50.0
+output:
+  directory: runs/sample_2d
+solver:
+  method: direct
+report:
+  template:
+    id: organization_review_a4
+    template_id: organization_review_a4
+    template_name: Organization review A4
+    template_revision: '2026.05'
+    title: GeoFEM 2D 計算書
+    subtitle: 解析条件・結果・照査記録
+    page_style: A4 portrait titleblock
+    company: GeoFEM Organization
+    prepared_by: ''
+    checked_by: ''
+    approved_by: ''
+  branding:
+    organization: GeoFEM Organization
+    department: Geotechnical Engineering
+    logo_path: templates/logo.png
+    logo_alt: GeoFEM Organization
+    primary_color: '#1f5f8b'
+post:
+  geofeas_style: true
+  style:
+    legend_position: right
+    relative_displacement: true
+    palette: organization_safety
+    primary_color: '#1f5f8b'
+    accent_color: '#c57b00'
+    ok_color: '#1b7f3a'
+    warning_color: '#b26a00'
+    error_color: '#b3261e'
+organization_profile:
+  profile_id: default_organization
+  revision: '2026.05'
+  organization: GeoFEM Organization
+  template_id: geofem_review
+  applied_at: '2026-05-23T14:39:57.747591+00:00'

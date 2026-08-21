@@ -1,0 +1,47 @@
+analysis:
+  dimension: 2D
+  type: static_plane_strain
+  unit_system: m-kN
+mesh:
+  element_type: TRI6
+  nodes:
+    "1": [0.0, 0.0]
+    "2": [1.0, 0.0]
+    "3": [0.0, 1.0]
+    "4": [0.5, 0.0]
+    "5": [0.5, 0.5]
+    "6": [0.0, 0.5]
+  elements:
+    - id: "1"
+      type: TRI6
+      nodes: ["1", "2", "3", "4", "5", "6"]
+      material: soil
+      integration: FULL
+materials:
+  soil:
+    model: elastic
+    E: 50000.0
+    nu: 0.30
+    gamma: 0.0
+boundary_conditions:
+  - node: "1"
+    ux: 0.0
+    uy: 0.0
+  - node: "2"
+    ux: 0.001
+    uy: 0.0004
+  - node: "3"
+    ux: 0.0002
+    uy: -0.0003
+  - node: "4"
+    ux: 0.0005
+    uy: 0.0002
+  - node: "5"
+    ux: 0.0006
+    uy: 0.00005
+  - node: "6"
+    ux: 0.0001
+    uy: -0.00015
+loads: []
+output:
+  directory: runs/patch_tri6_full

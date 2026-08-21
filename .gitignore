@@ -1,0 +1,33 @@
+# Python environments and caches
+.venv/
+.build_exe_venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Build and distribution output
+/build/
+dist/
+wheelhouse/
+*.zip
+
+# Runtime output and local GUI state
+runs/
+output/
+outputs/
+autosave/
+input/*_run_*/
+*.log
+*.tmp
+*.bak
+.geofem_audit_log.jsonl
+
+# Editor and OS metadata
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

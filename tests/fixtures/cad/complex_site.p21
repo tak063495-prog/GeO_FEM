@@ -1,0 +1,20 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION(('complex p21; semicolon in string'),'2;1');
+ENDSEC;
+DATA;
+#1=SXF_LAYER('site layer','green','chain','civil');
+#2=SXF_LINETYPE('chain','dash dot',0.8,-0.2,0.,-0.2);
+#3=CARTESIAN_POINT(
+  'origin',
+  (0.,0.)
+);
+#4=CARTESIAN_POINT('right',(10.,0.));
+#5=CARTESIAN_POINT('top',(10.,5.));
+#6=CARTESIAN_POINT('left',(0.,5.));
+#7=SXF_LINE_FEATURE('base;with semicolon',#1,#2,#3,#4);
+#8=SXF_POLYGON_FEATURE('ground',#1,#3,#4,#5,#6);
+#9=SXF_TEXT('note;kept',#1,#3);
+#10=SXF_USER_DEFINED_ATTRIBUTE('owner','GeoFEM;QA');
+ENDSEC;
+END-ISO-10303-21;

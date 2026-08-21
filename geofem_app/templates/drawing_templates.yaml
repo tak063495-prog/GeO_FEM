@@ -1,0 +1,75 @@
+drawing_template_library:
+  Corporate A4 standard:
+    title_height: 110
+    frame: corporate
+    company: Company
+    approval: true
+    title_fields:
+      - project
+      - drawing
+      - scale
+      - date
+      - author
+  Corporate A4 checked:
+    title_height: 128
+    frame: review
+    company: Company
+    approval: true
+    review_table: true
+    title_fields:
+      - project
+      - drawing
+      - scale
+      - designed_by
+      - checked_by
+      - approved_by
+  Construction review A3 landscape:
+    title_height: 120
+    frame: construction_review
+    company: Company
+    approval: true
+    page_size: A3
+    orientation: landscape
+    title_fields:
+      - project
+      - stage
+      - standard
+      - revision
+      - approver
+  Design calculation appendix:
+    title_height: 104
+    frame: calculation_appendix
+    company: Company
+    approval: true
+    report_blocks:
+      - input_conditions
+      - material_table
+      - boundary_load_figure
+      - stage_list
+      - result_figures
+      - judgement_table
+  Client submission A4:
+    title_height: 132
+    frame: client_submission
+    company: Client
+    approval: true
+    title_fields:
+      - client
+      - project_code
+      - drawing_no
+      - revision
+      - submission_date
+      - approved_by
+  Site construction stage sheet:
+    title_height: 118
+    frame: site_stage
+    company: Contractor
+    approval: true
+    page_size: A3
+    orientation: landscape
+    title_fields:
+      - site
+      - stage
+      - work_package
+      - checked_by
+      - approved_by

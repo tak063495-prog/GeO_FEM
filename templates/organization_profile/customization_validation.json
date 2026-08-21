@@ -1,0 +1,9 @@
+{
+  "schema": "geofem.customization_validation.v1",
+  "passed": true,
+  "error_count": 0,
+  "warning_count": 0,
+  "errors": [],
+  "warnings": [],
+  "feature_count": 3
+}

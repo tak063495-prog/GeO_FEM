@@ -1,0 +1,70 @@
+{
+  "schema": "geofem.analysis_log.v1",
+  "stage_count": 1,
+  "warning_count": 0,
+  "stages": [
+    {
+      "index": 1,
+      "name": "case2_srm_strength_reduction",
+      "time": 0.0,
+      "output_dir": "runs\\case2_factor12_fastfail_no_reprocess\\case2_srm_strength_reduction",
+      "active_element_count": 704,
+      "method": "srm",
+      "linear_method": "srm",
+      "iterations": 0,
+      "residual_norm": Infinity,
+      "converged": false,
+      "elapsed_seconds": 6.999016000016127,
+      "matrix_size": "",
+      "matrix_nnz": "",
+      "factor_of_safety": 0.0,
+      "srm_trial_count": 1
+    }
+  ],
+  "events": [
+    {
+      "event_type": "stage_completed",
+      "stage": "case2_srm_strength_reduction",
+      "index": 1,
+      "method": "srm",
+      "iterations": 0,
+      "residual_norm": Infinity,
+      "converged": false,
+      "factor_of_safety": 0.0,
+      "srm_trial_count": 1,
+      "message": "stage output: runs\\case2_factor12_fastfail_no_reprocess\\case2_srm_strength_reduction, FOS=0.0, SRM trials=1"
+    },
+    {
+      "event_type": "srm_summary",
+      "stage": "case2_srm_strength_reduction",
+      "method": "srm",
+      "factor_of_safety": 0.0,
+      "srm_trial_count": 1,
+      "message": "FOS=0.0, trials=1, search_mode=explicit_factors, stable=0.0, failed=1.2"
+    },
+    {
+      "event_type": "srm_trial",
+      "stage": "case2_srm_strength_reduction",
+      "index": 1,
+      "method": "srm_trial",
+      "factor_of_safety": 0.0,
+      "srm_factor": 1.2,
+      "plastic_ratio": Infinity,
+      "srm_ok": false,
+      "converged": false,
+      "failure_reason": "nonconvergence",
+      "error": "case2_srm_strength_reduction-FS1.2: increment cutback limit reached at load factor 0.4: case2_srm_strength_reduction-FS1.2-inc4: nonlinear solve did not converge, residual=7.390729e-11",
+      "message": "nonconvergence"
+    },
+    {
+      "event_type": "solver_summary",
+      "stage": "case2_srm_strength_reduction",
+      "iteration": 0,
+      "method": "srm",
+      "linear_method": "",
+      "residual_norm": Infinity,
+      "converged": false,
+      "factor_of_safety": 0.0
+    }
+  ]
+}

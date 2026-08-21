@@ -1,0 +1,12 @@
+-c requirements-lock.txt
+
+numpy
+scipy
+numba
+tbb
+PyYAML
+psutil
+threadpoolctl
+
+# Optional GUI/packaging dependencies:
+PySide6

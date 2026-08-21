@@ -1,0 +1,144 @@
+{
+  "schema": "geofem.organization_profile.v1",
+  "profile_id": "default_organization",
+  "revision": "2026.05",
+  "organization": {
+    "name": "GeoFEM Organization",
+    "department": "Geotechnical Engineering",
+    "prepared_by": "",
+    "checked_by": "",
+    "approved_by": ""
+  },
+  "branding": {
+    "logo_path": "templates/logo.png",
+    "logo_alt": "GeoFEM Organization",
+    "colors": {
+      "primary": "#1f5f8b",
+      "secondary": "#2f7d32",
+      "accent": "#c57b00",
+      "surface": "#f7fafc",
+      "error": "#b3261e",
+      "warning": "#b26a00",
+      "ok": "#1b7f3a"
+    }
+  },
+  "units": {
+    "unit_system": "m-kN",
+    "length": "m",
+    "force": "kN",
+    "stress": "kPa",
+    "density": "kN/m3"
+  },
+  "defaults": {
+    "project_template": "geofem_review",
+    "report_template": "organization_review_a4",
+    "post_palette": "organization_safety",
+    "element_type": "QUAD4",
+    "integration": "B-bar"
+  },
+  "report_templates": [
+    {
+      "id": "organization_review_a4",
+      "template_id": "organization_review_a4",
+      "template_name": "Organization review A4",
+      "template_revision": "2026.05",
+      "title": "GeoFEM 2D 計算書",
+      "subtitle": "解析条件・結果・照査記録",
+      "page_style": "A4 portrait titleblock"
+    },
+    {
+      "id": "client_submission_a3",
+      "template_id": "client_submission_a3",
+      "template_name": "Client submission A3 landscape",
+      "template_revision": "2026.05",
+      "title": "GeoFEM 2D 提出図書",
+      "subtitle": "施工段階解析・Post図・判定表",
+      "page_style": "A3 landscape titleblock"
+    }
+  ],
+  "project_templates": [
+    {
+      "id": "geofem_review",
+      "label": "GeoFEM 2D review template",
+      "domain": "general_geotechnical",
+      "solver_route": "GeoFEM 2D",
+      "description": "Static plane-strain review with organization report defaults and Post palette.",
+      "analysis_defaults": {
+        "dimension": "2D",
+        "type": "static_plane_strain",
+        "unit_system": "m-kN"
+      },
+      "mesh_defaults": {
+        "element_type": "QUAD4",
+        "integration": "B-bar"
+      },
+      "solver_defaults": {
+        "method": "direct"
+      },
+      "report_defaults": {
+        "template": {
+          "id": "organization_review_a4"
+        }
+      },
+      "post_defaults": {
+        "geofeas_style": true,
+        "style": {
+          "legend_position": "right",
+          "relative_displacement": true
+        }
+      }
+    },
+    {
+      "id": "geofeas_public_submission",
+      "label": "GeoFEAS public substitute submission",
+      "domain": "geo_feas_public_substitute",
+      "solver_route": "GeoFEM 2D",
+      "description": "Public-information-based GeoFEAS substitute workflow with calculation report bundle.",
+      "analysis_defaults": {
+        "dimension": "2D",
+        "type": "static_plane_strain",
+        "profile": "geofeas_public_v5",
+        "unit_system": "m-kN"
+      },
+      "report_defaults": {
+        "template": {
+          "id": "client_submission_a3"
+        }
+      },
+      "post_defaults": {
+        "geofeas_style": true,
+        "values_csv": true
+      }
+    },
+    {
+      "id": "vgflow_seepage",
+      "label": "VGFlow2D seepage handoff template",
+      "domain": "seepage",
+      "solver_route": "VGFlow2D public substitute",
+      "description": "Transient seepage settings and report defaults for VGFlow2D substitute handoff.",
+      "analysis_defaults": {
+        "dimension": "2D",
+        "type": "vgflow2d",
+        "mode": "transient",
+        "unit_system": "m-kN"
+      },
+      "report_defaults": {
+        "template": {
+          "id": "organization_review_a4"
+        },
+        "print_profile": {
+          "paper": "A3",
+          "orientation": "landscape"
+        }
+      },
+      "vgflow2d_defaults": {
+        "report": {
+          "post_apply": [
+            "post_contours",
+            "flow_vectors"
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "schema": "geofem.development_failure_history.v1",
+  "created_at": "2026-08-21",
+  "project": "GeoFEM 2D",
+  "history_method": "repository_artifacts_plus_conversation_reconstruction",
+  "git_history_available": false,
+  "evidence_levels": {
+    "confirmed": "ファイル、ログ、テスト記録から直接確認",
+    "inferred": "会話記録または複数資料から推定",
+    "open": "実ケースまたは別環境の再検証が必要"
+  },
+  "categories": [
+    {
+      "id": "HIS-01",
+      "category": "history_and_traceability",
+      "status": "open",
+      "evidence_level": "confirmed",
+      "symptom": "Gitコミット履歴がなく主要ファイルが未追跡",
+      "impact": "採用版、変更理由、回帰結果を厳密に再現できない",
+      "lesson": "各変更をcommit、テスト、ベンチ、精度ゲートと一緒に残す"
+    },
+    {
+      "id": "INP-01",
+      "category": "input_and_yaml",
+      "status": "mitigated",
+      "evidence_level": "confirmed",
+      "symptom": "存在しない節点セットをboundary conditionが参照",
+      "impact": "解析開始前に入力エラー",
+      "lesson": "入力診断で参照整合性を検査し対象セルへ戻す"
+    },
+    {
+      "id": "NUM-01",
+      "category": "constitutive_accuracy",
+      "status": "open",
+      "evidence_level": "confirmed",
+      "symptom": "Case2/4のFOSと論文値の差、material fallback evidence、limited confidence",
+      "impact": "収束結果をそのまま正確なFOSと扱えない",
+      "lesson": "regularization、fallback、mesh、boundary、failure definitionを分離検証"
+    },
+    {
+      "id": "NUM-02",
+      "category": "srm_failure_classification",
+      "status": "mitigated_open_validation",
+      "evidence_level": "confirmed",
+      "symptom": "非収束、cutback上限、物理failure、数値不安定の区別が難しい",
+      "impact": "FOSの下方バイアスまたは過剰な再解析",
+      "lesson": "failure class、confidence、bracket、diagnostic scoreを保存"
+    },
+    {
+      "id": "NUM-03",
+      "category": "path_dependence",
+      "status": "open",
+      "evidence_level": "confirmed",
+      "symptom": "lookahead、early stop、warm start、adaptive searchで経路が変わる",
+      "impact": "FOS bracketやelapsedの比較が単純でない",
+      "lesson": "worker=1、decision order、strict confirmationを基準にする"
+    },
+    {
+      "id": "PERF-01",
+      "category": "performance_measurement",
+      "status": "mitigated",
+      "evidence_level": "confirmed",
+      "symptom": "warmup、I/O、帳票、並列競合がelapsedへ混入",
+      "impact": "改善効果の誤判定と性能ゲートの揺れ",
+      "lesson": "cold/warm、solver/post/I/O、worker=1/autoを分離"
+    },
+    {
+      "id": "PERF-02",
+      "category": "optimization_fallback",
+      "status": "mitigated_open_validation",
+      "evidence_level": "confirmed",
+      "symptom": "Mohr-Coulomb Python fallback、postprocess、SRM overheadが支配",
+      "impact": "kernel高速化だけでは実行時間が下がらない",
+      "lesson": "fallback件数とtrial overheadを性能KPIへ含める"
+    },
+    {
+      "id": "GUI-01",
+      "category": "gui_responsiveness",
+      "status": "mitigated_open_validation",
+      "evidence_level": "confirmed",
+      "symptom": "高メッシュでwatchdog遅延。現存ログ最大約9.6秒、会話上では約18.5秒",
+      "impact": "解析中の操作不能、結果表示遅延",
+      "lesson": "debounce、cache、LOD、遅延生成、別プロセス、実機閾値を使う"
+    },
+    {
+      "id": "GUI-02",
+      "category": "gui_workflow",
+      "status": "mitigated",
+      "evidence_level": "confirmed",
+      "symptom": "工程遷移でボタン位置のずれ、結果状態とナビゲーションの不整合",
+      "impact": "誤操作と結果参照の分かりにくさ",
+      "lesson": "中央ワークスペース寸法、工程判定、表示権限を一元化"
+    },
+    {
+      "id": "PKG-01",
+      "category": "packaging_and_dependencies",
+      "status": "mitigated_open_validation",
+      "evidence_level": "confirmed",
+      "symptom": "BAT依存不足、tbb12.dll、scipy.special._cdflib hidden import警告",
+      "impact": "別PCでGUIが起動しない、配布版の信頼性低下",
+      "lesson": "PyInstaller smoke test、DLL/import監査、最小Case実行を配布工程へ固定"
+    },
+    {
+      "id": "OBS-01",
+      "category": "observability",
+      "status": "mitigated",
+      "evidence_level": "confirmed",
+      "symptom": "初期はFOS進行とfailed trial診断が不足",
+      "impact": "失敗原因を解析後にしか判断できない",
+      "lesson": "trial中にfactor、accepted load、plastic、cutback、residual、elapsedを出す"
+    },
+    {
+      "id": "QA-01",
+      "category": "regression_and_real_cases",
+      "status": "open",
+      "evidence_level": "confirmed",
+      "symptom": "単体/標準ベンチと、Case1〜4同一環境の完全比較が分離している",
+      "impact": "実務入力での精度・速度・再現性を一度に保証できない",
+      "lesson": "リリース前にworker=1とautoのCase1〜4を同一環境で保存"
+    }
+  ],
+  "representative_metrics": {
+    "phase6_case_fos": {
+      "case1": {"fos": 0.682511967421, "stable": 0.682511967421, "failed": 0.686367967237, "elapsed_seconds": 105102.7220814},
+      "case2": {"fos": 1.3375, "stable": 1.3375, "failed": 1.35, "elapsed_seconds": 91273.3846394},
+      "case3": {"fos": 1.1875, "stable": 1.1875, "failed": 1.190625, "elapsed_seconds": 65409.0770719},
+      "case4": {"fos": 2.146875, "stable": 2.146875, "failed": 2.15, "elapsed_seconds": 42230.1471781}
+    },
+    "case2_strict_numba": {
+      "fos": 1.340625,
+      "confidence": "limited",
+      "status": "material_fallback_evidence",
+      "elapsed_seconds": 1157.2163178,
+      "solver_elapsed_seconds": 4.0210719,
+      "overhead_elapsed_seconds": 1152.8243551
+    }
+  }
+}

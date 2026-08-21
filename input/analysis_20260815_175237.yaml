@@ -1,0 +1,110 @@
+analysis:
+  dimension: 2D
+  type: static_plane_strain
+  unit_system: m-kN
+mesh:
+  generator: rectangle
+  x_range:
+  - 0.0
+  - 10.0
+  y_range:
+  - 0.0
+  - 2.0
+  nx: 8
+  ny: 2
+  element_type: QUAD4
+  integration: B-bar
+  material: soil
+materials:
+  soil:
+    model: elastic
+    E: 50000.0
+    nu: 0.33
+    gamma: 18.0
+boundary_conditions:
+- set: left
+  ux: 0.0
+  uy: 0.0
+- set: bottom
+  uy: 0.0
+loads:
+- edge:
+  - '9'
+  - '18'
+  ty: -50.0
+output:
+  directory: runs/sample_2d
+stages: []
+gui:
+  command_palette:
+    pinned: []
+    recent: []
+geometry:
+  layers:
+  - name: template mesh outline
+    visible: true
+    locked: false
+    color: '#7a5c00'
+    source: mesh_rectangle_outline
+  lines:
+  - id: mesh_outline_bottom
+    purpose: model
+    layer: template mesh outline
+    start:
+    - 0.0
+    - 0.0
+    end:
+    - 10.0
+    - 0.0
+    source: mesh_rectangle_outline
+  - id: mesh_outline_right
+    purpose: model
+    layer: template mesh outline
+    start:
+    - 10.0
+    - 0.0
+    end:
+    - 10.0
+    - 2.0
+    source: mesh_rectangle_outline
+  - id: mesh_outline_top
+    purpose: model
+    layer: template mesh outline
+    start:
+    - 10.0
+    - 2.0
+    end:
+    - 0.0
+    - 2.0
+    source: mesh_rectangle_outline
+  - id: mesh_outline_left
+    purpose: model
+    layer: template mesh outline
+    start:
+    - 0.0
+    - 2.0
+    end:
+    - 0.0
+    - 0.0
+    source: mesh_rectangle_outline
+  regions:
+  - id: mesh_outline_region
+    points:
+    - - 0.0
+      - 0.0
+    - - 10.0
+      - 0.0
+    - - 10.0
+      - 2.0
+    - - 0.0
+      - 2.0
+    source: mesh_rectangle_outline
+    material: soil
+  mesh_outline_source:
+    generator: rectangle
+    x_range:
+    - 0.0
+    - 10.0
+    y_range:
+    - 0.0
+    - 2.0

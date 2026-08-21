@@ -1,0 +1,10 @@
+date,phase,area,event,impact,status,evidence_level
+2026-05,solver-wide,performance,"large/small deformation and SRM cache, array, sparse assembly work started", "optimization scope expanded across solver",mitigated,confirmed
+2026-05-31,case-validation,accuracy,"Case2 factor probes exposed sensitivity to constitutive tangent, cutback, regularization and failure classification", "FOS could depend on settings and path",open,confirmed
+2026-06,SRM,search,"adaptive bracket, projection, bisection, lookahead, warm start, early stop and deferred verification introduced", "trial count and elapsed reduced, but path dependence needed guarding",mitigated_open_validation,confirmed
+2026-06,SRM,observability,"failed-trial diagnostic indicators and FOS progress logging expanded", "failure could be inspected during execution",mitigated,confirmed
+2026-07,solver,constitutive,"Mohr-Coulomb Numba, regularized projection and active-set paths added", "fallback and precision gates remained necessary",mitigated_open_validation,confirmed
+2026-07,gui,workflow,"Phase 1-6 GUI refinement: result summary, navigation, read-only reference, focus mode", "workflow became more explicit",mitigated,confirmed
+2026-07,packaging,distribution,"PyInstaller and dependency diagnostics addressed", "distribution reliability improved but another-PC smoke test remains",mitigated_open_validation,confirmed
+2026-08,gui,large-model,"watchdog logs and large-mesh GUI bottlenecks reviewed", "event-loop delay remained a real-device validation item",mitigated_open_validation,confirmed
+2026-08-21,process,traceability,"history archive created; no usable Git commit history found", "future changes need commit-level traceability",open,confirmed
