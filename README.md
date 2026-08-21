@@ -77,6 +77,24 @@ The repository also contains Case1-4 SRM YAMLs under `examples/`. Full Case1-4 r
 
 ## Version And Contribution Workflow
 
+### 別PCで取得・更新する
+
+初回取得:
+
+```powershell
+git clone https://github.com/tak063495-prog/GeO_FEM.git
+cd GeO_FEM
+```
+
+既にclone済みの作業コピーを更新:
+
+```powershell
+git switch master
+git pull --ff-only origin master
+```
+
+ローカル変更がある場合は、先にcommitまたはstashしてからpullしてください。履歴を壊さないため、通常の更新では `reset --hard` を使用しません。
+
 1. Create a feature branch from `master`.
 2. Make a focused change and update the relevant tests/docs.
 3. Run targeted tests, then the full regression suite when the change crosses solver, GUI or output boundaries.
