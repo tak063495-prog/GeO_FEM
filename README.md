@@ -95,6 +95,21 @@ git pull --ff-only origin master
 
 ローカル変更がある場合は、先にcommitまたはstashしてからpullしてください。履歴を壊さないため、通常の更新では `reset --hard` を使用しません。
 
+リモート名を `GeOFEM` に統一する場合は、clone時に名前を指定できます。
+
+```powershell
+git clone -o GeOFEM https://github.com/tak063495-prog/GeO_FEM.git
+cd GeO_FEM
+git pull --ff-only GeOFEM master
+```
+
+既存cloneのリモート名を変更する場合:
+
+```powershell
+git remote rename origin GeOFEM
+git pull --ff-only GeOFEM master
+```
+
 1. Create a feature branch from `master`.
 2. Make a focused change and update the relevant tests/docs.
 3. Run targeted tests, then the full regression suite when the change crosses solver, GUI or output boundaries.
