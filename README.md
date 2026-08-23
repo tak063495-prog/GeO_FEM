@@ -1,8 +1,10 @@
 # GeoFEM 2D
 
+[English](README.md) | [日本語](README.ja.md)
+
 GeoFEM is a 2D finite-element analysis application with a PySide6 GUI and a command-line solver. It is intended for plane-strain geotechnical analysis, including elastic/plastic materials, strength-reduction method (SRM), consolidation/u-p analysis, large deformation, axisymmetric and dynamic workflows.
 
-現在の基準版は `v0.1.0` です。GitHubでは、ソース、テスト、例題YAML、入力YAML、設計資料、失敗分類アーカイブを管理しています。
+The current baseline is `v0.1.0`. The repository contains source code, tests, example YAML files, input YAML files, design notes, and a classified development-failure archive.
 
 ## What Is Included
 
@@ -66,36 +68,37 @@ The repository also contains Case1-4 SRM YAMLs under `examples/`. Full Case1-4 r
 
 ## Documentation
 
-- [開発者ガイド](docs/DEVELOPER_GUIDE_JA.md)
-- [起動・インストール](docs/INSTALL_STARTUP_JA.md)
-- [API契約](docs/API_CONTRACTS_JA.md)
-- [性能レビュー](docs/PERFORMANCE_REVIEW_JA.md)
-- [Case2/4 Mohr-Coulomb Numba検証](docs/CASE2_CASE4_MC_NUMBA_VALIDATION_JA.md)
-- [開発履歴・失敗分類](development_history_failures_20260821/DEVELOPMENT_FAILURE_HISTORY_JA.md)
-- [成果物マニフェスト](docs/DELIVERABLE_MANIFEST_20260821.md)
-- [変更履歴](CHANGELOG.md)
+- [Developer guide (Japanese)](docs/DEVELOPER_GUIDE_JA.md)
+- [Installation and startup (Japanese)](docs/INSTALL_STARTUP_JA.md)
+- [API contracts (Japanese)](docs/API_CONTRACTS_JA.md)
+- [Performance review (Japanese)](docs/PERFORMANCE_REVIEW_JA.md)
+- [Case2/4 Mohr-Coulomb Numba validation (Japanese)](docs/CASE2_CASE4_MC_NUMBA_VALIDATION_JA.md)
+- [Development history and failure classification (Japanese)](development_history_failures_20260821/DEVELOPMENT_FAILURE_HISTORY_JA.md)
+- [Deliverable manifest](docs/DELIVERABLE_MANIFEST_20260821.md)
+- [Changelog](CHANGELOG.md)
+- [Project Wiki](https://github.com/tak063495-prog/GeO_FEM/wiki)
 
 ## Version And Contribution Workflow
 
-### 別PCで取得・更新する
+### Clone And Update On Another PC
 
-初回取得:
+Clone the repository:
 
 ```powershell
 git clone https://github.com/tak063495-prog/GeO_FEM.git
 cd GeO_FEM
 ```
 
-既にclone済みの作業コピーを更新:
+Update an existing working copy:
 
 ```powershell
 git switch master
 git pull --ff-only origin master
 ```
 
-ローカル変更がある場合は、先にcommitまたはstashしてからpullしてください。履歴を壊さないため、通常の更新では `reset --hard` を使用しません。
+If the working copy has local changes, commit or stash them before pulling. Do not use `reset --hard` for a routine update.
 
-リモート名を `GeOFEM` に統一する場合は、clone時に名前を指定できます。
+The repository remote may be named `GeOFEM` instead of the conventional `origin`:
 
 ```powershell
 git clone -o GeOFEM https://github.com/tak063495-prog/GeO_FEM.git
@@ -103,7 +106,7 @@ cd GeO_FEM
 git pull --ff-only GeOFEM master
 ```
 
-既存cloneのリモート名を変更する場合:
+To rename an existing remote:
 
 ```powershell
 git remote rename origin GeOFEM
@@ -122,4 +125,4 @@ The initial baseline commit is `dc7249e18e7fb4e7730f9282bdce590a43727fca`, tagge
 
 ## License And External Tools
 
-No open-source license is declared in the baseline repository. Do not redistribute or incorporate the project into another product until the intended license is added. Native DWG decoding is not claimed; the documented external conversion policy applies.
+The GeoFEM source repository is distributed under the [MIT License](LICENSE). Dependencies, GUI libraries, Numba/LLVM components, and external DWG conversion tools retain their own licenses and notices. Native DWG decoding is not claimed; the documented external conversion policy applies.

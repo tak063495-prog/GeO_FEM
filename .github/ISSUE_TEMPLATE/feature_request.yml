@@ -1,0 +1,32 @@
+name: Feature request
+description: Suggest a focused improvement to GeoFEM.
+title: "[Feature] "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What user or engineering workflow should improve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe the smallest useful behavior and any UI or CLI details.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation and trade-offs
+      description: Explain expected numerical, performance, compatibility, or documentation impact.
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - label: I have checked the README, Wiki, and existing issues for a duplicate.
+          required: true

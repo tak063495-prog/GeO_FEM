@@ -1,0 +1,39 @@
+name: Bug report
+description: Report a reproducible solver, GUI, packaging, or documentation problem.
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please remove confidential data and credentials. Japanese reports are welcome; include the technical details below.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Include the command, a minimized YAML/input, and the smallest useful log excerpt.
+    validations:
+      required: true
+  - type: input
+    id: commit
+    attributes:
+      label: Commit or version
+      placeholder: e.g. master at abc1234 or v0.1.0
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: OS, Python, NumPy, SciPy, Numba, PySide6
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: For SRM, include FOS bracket, factor_tol, convergence, fallback, and analysis_log indicators.

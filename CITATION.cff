@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If GeoFEM contributes to your work, please cite the repository and the exact version used."
+title: "GeoFEM 2D"
+abstract: "A 2D geotechnical finite-element solver and PySide6 GUI with plasticity, strength-reduction analysis, coupled consolidation, large deformation, dynamic analysis, diagnostics, and selected Numba acceleration paths."
+type: software
+authors:
+  - name: "tak063495-prog"
+repository-code: "https://github.com/tak063495-prog/GeO_FEM"
+license: MIT
+version: "0.1.0"
+date-released: "2026-08-21"
