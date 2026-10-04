@@ -760,15 +760,15 @@ def _solve_direct_scipy(matrix: csr_matrix, rhs: np.ndarray, stage_name: str, se
             return np.asarray(spsolve(matrix, rhs, permc_spec=permc_spec), dtype=float), "disabled", symbolic_state
         except RuntimeError as exc:
             raise FEM2DError(f"{stage_name}: direct solver failed: {exc}") from exc
-    cache_entry, cache_state = _cached_lu(
-        solve_matrix,
-        int(settings.get("cache_max_entries", _FACTOR_CACHE_MAX_DEFAULT)),
-        permc_spec=permc_spec,
-        max_memory_mb=float(settings.get("cache_max_memory_mb", 512.0)),
-        auto_disable_miss_streak=int(settings.get("cache_auto_disable_miss_streak", 3)),
-        auto_reprobe_interval=int(settings.get("cache_auto_reprobe_interval", 16)),
-    )
     try:
+        cache_entry, cache_state = _cached_lu(
+            solve_matrix,
+            int(settings.get("cache_max_entries", _FACTOR_CACHE_MAX_DEFAULT)),
+            permc_spec=permc_spec,
+            max_memory_mb=float(settings.get("cache_max_memory_mb", 512.0)),
+            auto_disable_miss_streak=int(settings.get("cache_auto_disable_miss_streak", 3)),
+            auto_reprobe_interval=int(settings.get("cache_auto_reprobe_interval", 16)),
+        )
         with cache_entry.solve_lock:
             solved = np.asarray(cache_entry.lu.solve(solve_rhs), dtype=float)
             return _restore_symbolic_solution(solved, restore_permutation), cache_state, symbolic_state

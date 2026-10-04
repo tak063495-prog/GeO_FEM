@@ -939,8 +939,8 @@ def _mc_eval_active_candidate_numba(
                 for q in range(3):
                     tmp += Cn[p, q] * flow_coeffs[active_b, q]
                 value += yield_coeffs[active_a, p] * tmp
-            if aidx == bidx:
-                value += hardening
+            # All yield planes share kappa_new = kappa + sum(gamma).
+            value += hardening
             H[aidx, bidx] = value
     ok, gamma = _mc_solve_active_system_numba(H, rhs, nact)
     sig_corr = np.zeros(3, dtype=np.float64)
@@ -1779,8 +1779,7 @@ def _mc_principal_jacobian_numba(
                 for q in range(3):
                     tmp += Cn[p, q] * flow_coeffs[active_b, q]
                 value += yield_coeffs[active_a, p] * tmp
-            if aidx == bidx:
-                value += hardening
+            value += hardening
             H[aidx, bidx] = value
 
     Y = np.zeros((3, 3), dtype=np.float64)
@@ -2724,7 +2723,7 @@ def _mc_python_candidate_matrix_cache(
             H = np.ascontiguousarray(N @ Cn @ M.T, dtype=float)
             if hardening != 0.0:
                 H = H.copy()
-                H.flat[:: H.shape[0] + 1] += hardening
+                H += hardening
             try:
                 np.linalg.solve(H, np.zeros(count, dtype=float))
                 use_lstsq = False
@@ -3372,6 +3371,9 @@ def algorithmic_material_tangent(
         raise FEM2DError(f"unsupported 2D material tangent method '{method}'")
     if _is_advanced_material(material):
         return numerical_material_tangent(material, strain4, state=state, initial_stress=initial_stress, strength_factor=strength_factor)
+    if material.model in {'mohr_coulomb', 'mc'} and material.mohr_coulomb_apex_policy == 'rankine_cap':
+        # Differentiate the public pre-cap -> MC -> post-cap stress update.
+        return numerical_material_tangent(material, strain4, state=state, initial_stress=initial_stress, strength_factor=strength_factor)
     if material.tension_cutoff and math.isfinite(float(material.tensile_strength)) and material.model in {"mohr_coulomb", "mc"}:
         return _mohr_coulomb_tension_cutoff_consistent_tangent(
             material,
@@ -3574,7 +3576,7 @@ def _mc_principal_jacobian(active_ids: tuple[int, ...], yield_coeffs: np.ndarray
     H = N @ Cn @ M.T
     if hardening != 0.0:
         H = H.copy()
-        H.flat[:: H.shape[0] + 1] += hardening
+        H += hardening
     try:
         Y = np.linalg.solve(H, N)
     except np.linalg.LinAlgError:
@@ -3643,6 +3645,7 @@ def numerical_material_tangent(
         and math.isfinite(float(material.tensile_strength))
         and not _is_advanced_material(material)
         and material.model in {"mohr_coulomb", "mc"}
+        and material.mohr_coulomb_apex_policy != 'rankine_cap'
         and not old_state.state_vars
         and initial.shape == (4,)
     ):

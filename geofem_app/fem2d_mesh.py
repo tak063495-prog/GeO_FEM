@@ -300,7 +300,7 @@ def _generate_rectangle_mesh(mesh_cfg: Mapping[str, Any]) -> Mesh2D:
                 elements.append(Element2D(str(len(elements) + 1), "TRI6", (*tri1, midpoint(tri1[0], tri1[1]), midpoint(tri1[1], tri1[2]), midpoint(tri1[2], tri1[0])), material, integration))
                 elements.append(Element2D(str(len(elements) + 1), "TRI6", (*tri2, midpoint(tri2[0], tri2[1]), midpoint(tri2[1], tri2[2]), midpoint(tri2[2], tri2[0])), material, integration))
 
-    if etype == "QUAD8":
+    if etype in {"QUAD8", "TRI6"}:
         node_sets = {
             "left": _quad8_boundary_sequence([corner[(0, j)] for j in range(ny + 1)], midpoint),
             "right": _quad8_boundary_sequence([corner[(nx, j)] for j in range(ny + 1)], midpoint),

@@ -16,7 +16,7 @@ import numpy as np
 import yaml
 
 from .analysis_log import write_structured_analysis_log
-from .fem2d_types import DOF_NAMES, Mesh2D, SolveResult2D, StageResult2D
+from .fem2d_types import DOF_NAMES, FEM2DError, Mesh2D, SolveResult2D, StageResult2D
 from .geofeas_public import public_profile_summary, write_public_output_conditions, write_public_profile_summary
 from .html_report_utils import format_value as _fmt
 from .html_report_utils import html_escape as _h
@@ -551,7 +551,9 @@ def _read_csv_dict_rows(path: Path) -> list[dict[str, Any]]:
         return []
     with path.open("r", encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
-        return [{str(key): _coerce_csv_value(value) for key, value in row.items()} for row in reader]
+        # IDs are labels: '1', '001', and '1.0' may name different objects.
+        return [{str(key): value if str(key).endswith('_id') or key in {'id', 'dof', 'stage', 'material', 'type'}
+                 else _coerce_csv_value(value) for key, value in row.items()} for row in reader]
 
 
 def _stage_dir_from_summary(output_dir: Path, raw: Mapping[str, Any], index: int) -> Path:
@@ -569,25 +571,38 @@ def _stage_dir_from_summary(output_dir: Path, raw: Mapping[str, Any], index: int
 
 def _stage_displacements_from_csv(mesh: Mesh2D, stage_dir: Path) -> np.ndarray:
     values = np.zeros(len(mesh.node_ids) * 2, dtype=float)
+    seen: set[str] = set()
     for row in _read_csv_dict_rows(stage_dir / "displacements.csv"):
         node_id = str(row.get("node_id", "") or "")
         if node_id not in mesh.node_index:
-            continue
+            raise FEM2DError(f"displacements.csv: unknown node_id '{node_id}'")
+        if node_id in seen:
+            raise FEM2DError(f"displacements.csv: duplicate node_id '{node_id}'")
+        seen.add(node_id)
         idx = mesh.node_index[node_id]
         values[2 * idx] = float(row.get("ux", 0.0) or 0.0)
         values[2 * idx + 1] = float(row.get("uy", 0.0) or 0.0)
+    if (stage_dir / 'displacements.csv').exists() and seen != set(mesh.node_ids):
+        raise FEM2DError(f"displacements.csv: missing node IDs {sorted(set(mesh.node_ids) - seen)}")
     return values
 
 
 def _stage_pore_pressure_from_csv(mesh: Mesh2D, stage_dir: Path) -> np.ndarray | None:
     rows = _read_csv_dict_rows(stage_dir / "pore_pressure.csv")
     if not rows:
+        if (stage_dir / 'pore_pressure.csv').exists():
+            raise FEM2DError('pore_pressure.csv: missing node IDs (empty table)')
         return None
     values = np.zeros(len(mesh.node_ids), dtype=float)
+    seen: set[str] = set()
     for row in rows:
         node_id = str(row.get("node_id", "") or "")
-        if node_id in mesh.node_index:
-            values[mesh.node_index[node_id]] = float(row.get("pore_pressure", 0.0) or 0.0)
+        if node_id not in mesh.node_index or node_id in seen:
+            raise FEM2DError(f"pore_pressure.csv: unknown or duplicate node_id '{node_id}'")
+        seen.add(node_id)
+        values[mesh.node_index[node_id]] = float(row.get("pore_pressure", 0.0) or 0.0)
+    if seen != set(mesh.node_ids):
+        raise FEM2DError(f"pore_pressure.csv: missing node IDs {sorted(set(mesh.node_ids) - seen)}")
     return values
 
 
@@ -599,6 +614,8 @@ def _stage_reactions_from_csv(mesh: Mesh2D, stage_dir: Path) -> tuple[np.ndarray
     for row in rows:
         node_id = str(row.get("node_id", "") or "")
         dof_name = str(row.get("dof", "") or "")
+        if dof_name in dof_name_to_offset and node_id not in mesh.node_index:
+            raise FEM2DError(f"reactions.csv: unknown node_id '{node_id}'")
         if node_id not in mesh.node_index or dof_name not in dof_name_to_offset:
             continue
         dof = 2 * mesh.node_index[node_id] + dof_name_to_offset[dof_name]

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased — 2026-10 review
+
+[日本語の修正・検証記録](docs/RELEASE_NOTES_20261004_JA.md)
+
 ## v0.1.0 - 2026-08-21
 
 初回公開基準版。以下を同一コミットに固定しました。
