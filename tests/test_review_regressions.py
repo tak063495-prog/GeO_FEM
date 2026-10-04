@@ -88,6 +88,16 @@ class ReviewRegressions(unittest.TestCase):
         with self.assertRaises(FEM2DError):
             lin._solve_direct_scipy(csr_matrix((32, 32)), np.ones(32), 'singular-stage', {})
 
+    def test_auto_disabled_lu_failure_uses_the_same_error_contract(self):
+        lin.clear_linear_factor_cache()
+        settings = {'cache_auto_disable_miss_streak': 1, 'cache_auto_reprobe_interval': 16}
+        lin._solve_direct_scipy(eye(32, format='csr'), np.ones(32), 'populate', settings)
+        self.assertTrue(any(s['disabled'] for s in lin._FACTOR_PATTERN_STATS.values()))
+        with patch.object(lin, 'splu', side_effect=RuntimeError('singular')), self.assertRaisesRegex(FEM2DError, 'auto-disabled'):
+            lin._solve_direct_scipy(2 * eye(32, format='csr'), np.ones(32), 'auto-disabled', settings)
+        self.assertFalse(lin._FACTOR_CACHE_BUILDING)
+        lin.clear_linear_factor_cache()
+
     def test_shared_hardening_active_system_and_tangent(self):
         # f_a = N_a sigma - c - H(kappa + sum(gamma)); derivative is H 11^T.
         coeff = mat._mc_plane_coeffs(np.pi / 6)
