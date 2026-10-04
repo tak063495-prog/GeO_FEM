@@ -12168,6 +12168,8 @@ class PlaneStrainSolveTests(unittest.TestCase):
                 "sustainability_2024_case*_quad4_sri_auto_srm_speed_guarded.yaml"
             )
         )
+        if not case_dir.is_dir():
+            self.skipTest("NOT_RUN: external guarded SRM distribution (dist/) is not included in this source checkout")
         self.assertEqual(len(paths), 4)
         for path in paths:
             cfg = yaml.safe_load(path.read_text(encoding="utf-8-sig"))

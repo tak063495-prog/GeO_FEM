@@ -7,7 +7,7 @@ from typing import Any, Mapping
 
 import numpy as np
 
-from .fem2d_mesh import _target_nodes
+from .fem2d_mesh import _target_nodes, _pressure_edges
 from .fem2d_types import FEM2DError, Mesh2D, StageResult2D
 from .fem2d_utils import _ensure_list
 
@@ -191,12 +191,18 @@ def _water_level_pressure_specs(mesh: Mesh2D, hydro: Mapping[str, Any], info: di
             continue
         target = dict(spec)
         level = float(target.get("water_level", target.get("level", target.get("head", 0.0))) or 0.0)
-        try:
+        if any(key in target for key in ('node', 'nodes', 'set')):
             nodes = _target_nodes(mesh, target)
-        except FEM2DError:
+        elif any(key in target for key in ('edge', 'edges')):
+            nodes = list(dict.fromkeys(n for edge in _pressure_edges(mesh, target) for n in edge))
+        else:
             nodes = list(mesh.node_ids)
         for nid in nodes:
-            out.append({"node": nid, "water_level": level, "source": "water_level_update", **{k: v for k, v in target.items() if k not in {"node", "nodes", "set"}}})
+            if nid not in mesh.node_index:
+                raise FEM2DError(f"water level: unknown node '{nid}'")
+        for nid in nodes:
+            out.append({**{k: v for k, v in target.items() if k not in {"node", "nodes", "set", "edge", "edges"}},
+                        "node": nid, "water_level": level, "source": "water_level_update"})
     info["water_level_update_count"] = len(out)
     return out
 
