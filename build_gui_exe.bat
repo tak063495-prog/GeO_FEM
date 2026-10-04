@@ -2,6 +2,7 @@
 setlocal EnableExtensions
 cd /d "%~dp0"
 
+
 set "BUILD_VENV=%CD%\.build_exe_venv"
 set "BUILD_PY=%BUILD_VENV%\Scripts\python.exe"
 set "PYINSTALLER_HOOKS=%CD%\tools\pyinstaller_hooks"
@@ -18,9 +19,9 @@ if errorlevel 1 exit /b 1
 
 set "PATH=%BUILD_VENV%\Library\bin;%PATH%"
 
-"%BUILD_PY%" -m PyInstaller --noconfirm --clean --distpath build\pyinstaller_dist --workpath build\pyinstaller_work --specpath build\pyinstaller_spec --additional-hooks-dir "%PYINSTALLER_HOOKS%" --name GeoFEM-GUI --windowed --paths "%CD%" --collect-all numba --collect-all llvmlite geofem_gui.py
+"%BUILD_PY%" tools\pyinstaller_build.py --noconfirm --clean --distpath build\pyinstaller_dist --workpath build\pyinstaller_work --specpath build\pyinstaller_spec --additional-hooks-dir "%PYINSTALLER_HOOKS%" --name GeoFEM-GUI --windowed --paths "%CD%" --collect-all numba --collect-all llvmlite geofem_gui.py
 if errorlevel 1 exit /b 1
-"%BUILD_PY%" -m PyInstaller --noconfirm --clean --distpath build\pyinstaller_dist --workpath build\pyinstaller_work --specpath build\pyinstaller_spec --additional-hooks-dir "%PYINSTALLER_HOOKS%" --name GeoFEM-CLI --console --paths "%CD%" --collect-all numba --collect-all llvmlite geofem_cli.py
+"%BUILD_PY%" tools\pyinstaller_build.py --noconfirm --clean --distpath build\pyinstaller_dist --workpath build\pyinstaller_work --specpath build\pyinstaller_spec --additional-hooks-dir "%PYINSTALLER_HOOKS%" --name GeoFEM-CLI --console --paths "%CD%" --collect-all numba --collect-all llvmlite geofem_cli.py
 if errorlevel 1 exit /b 1
 
 copy /Y build\pyinstaller_dist\GeoFEM-CLI\GeoFEM-CLI.exe build\pyinstaller_dist\GeoFEM-GUI\GeoFEM-CLI.exe >nul
