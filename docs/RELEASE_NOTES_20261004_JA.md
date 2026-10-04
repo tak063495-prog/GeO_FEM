@@ -19,9 +19,9 @@ main/master、タグ、GitHub Releaseは変更しません。既存checkoutを�
 ## 検証
 
 Python 3.12.14、NumPy 2.4.6、SciPy 1.17.1、Numba 0.65.1、PySide6 6.11.1（既存lockと一致）。
-修正前: 初期7テストで6候補が失敗/例外として再現。修正後: 新規11テストPASS。
-最終の全回帰は639件実行、637件PASS、2件NOT_RUN（下記の外部dist不足）。
-`python -W error::ResourceWarning -m unittest discover -s tests -p "test_*.py" -v`、233.705秒。
+修正前: 初期7テストで6候補が失敗/例外として再現。追加レビュー後: 新規12テストPASS。
+最終の全回帰は640件実行、638件PASS、2件NOT_RUN（下記の外部dist不足）。
+`python -W error::ResourceWarning -m unittest discover -s tests -p "test_*.py" -v`。
 PyInstaller 6.20.0でCLI/GUIのbuildを検証。Numba cache locatorがPYZ内の相対ファイル名を
 解決できず起動不能となる問題を再現し、geofem_appを実在するPythonソースとして同梱するhookで修正。
 起動診断に必要な配布補助3ファイルも同梱します。
@@ -30,6 +30,12 @@ PyInstaller 6.20.0でCLI/GUIのbuildを検証。Numba cache locatorがPYZ内の�
 QtWidgetsと日本語フォントの診断もOK。警告1件は実行時に不要なPyInstaller未同梱だけです。
 手動GUI操作・署名付き配布公開はNOT_RUN。配布exeはGitHub Releaseとして公開していません。
 GitHub上のチェック状態はドラフトPRで確認できます。
+
+追加レビューでQUAD8 MC postのrankine_cap経路も不一致を再現（FULL/B-bar/SRIの3ケース）。
+公開更新のpre-capを持たないpost kernelをrankine_capでは使用せず、公開更新へfallback。
+affineひずみ[.1,-.1,0,0]、cap=0で全9GPの応力・kappaを比較し、FULL/B-barでは
+commitされたplastic strain/kappaも公開更新と一致。通常のapex policyのfast path条件は維持。
+この追加修正後に全回帰・CLI/GUI build・両exeのdoctor --include-guiを再実行しPASS。
 
 NOT_RUN: ソースに含まれない外部dist/配布パッケージを要する既存2試験。
 テストはパッケージ不存在時だけ明示skipし、期待値やパッケージが存在する場合の検証は維持します。
