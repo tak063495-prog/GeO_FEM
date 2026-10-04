@@ -428,6 +428,7 @@ def _quad8_mc_post_fast_path(
     if (
         element.type.upper() != "QUAD8"
         or mode not in {"FULL", "SRI"}
+        or str(material.mohr_coulomb_apex_policy).lower().strip() == "rankine_cap"
         or _is_advanced_material(material)
         or not tension_ok
         or model not in {"mohr_coulomb", "mc"}
@@ -452,6 +453,7 @@ def _quad8_mc_bbar_post_fast_path(
     if (
         element.type.upper() != "QUAD8"
         or normalize_integration(element.integration) != "B-BAR"
+        or str(material.mohr_coulomb_apex_policy).lower().strip() == "rankine_cap"
         or _is_advanced_material(material)
         or not tension_ok
         or model not in {"mohr_coulomb", "mc"}

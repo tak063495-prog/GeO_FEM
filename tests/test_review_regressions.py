@@ -13,6 +13,8 @@ from geofem_app.fem2d_types import Mesh2D, StageResult2D, FEM2DError, ElasticPla
 from geofem_app.fem2d_mesh import _generate_rectangle_mesh
 from geofem_app.fem2d_constraints import collect_constraints
 from geofem_app.fem2d_hydro import _water_level_pressure_specs, _collect_pressure_constraints
+from geofem_app.fem2d_mesh import mesh_from_config
+from geofem_app.fem2d_elements import compute_integration_point_results, compute_element_results_and_state
 
 
 class ReviewRegressions(unittest.TestCase):
@@ -154,6 +156,30 @@ class ReviewRegressions(unittest.TestCase):
         for method in ['analytic', 'numerical']:
             np.testing.assert_allclose(mat.algorithmic_material_tangent(material, strain, method=method), reference,
                                        rtol=1e-6, atol=1e-5)
+
+    def test_quad8_rankine_post_stress_and_committed_history_match_public_update(self):
+        material = ElasticPlaneStrainMaterial('soil', 1000., 0., model='mohr_coulomb',
+            cohesion=10., friction_angle=30., dilation_angle=30., tension_cutoff=True,
+            tensile_strength=0., mohr_coulomb_apex_policy='rankine_cap')
+        xy = [(0,0),(1,0),(1,1),(0,1),(.5,0),(1,.5),(.5,1),(0,.5)]
+        for mode in ['FULL','B-bar','SRI']:
+            with self.subTest(mode=mode):
+                mesh=mesh_from_config({'mesh':{'nodes':{str(i+1):p for i,p in enumerate(xy)},'elements':[
+                    {'id':'e1','type':'QUAD8','nodes':[str(i+1) for i in range(8)],'material':'soil','integration':mode}]}})
+                u=np.array([v for x,y in xy for v in (.1*x,-.1*y)])
+                rows=compute_integration_point_results(mesh,{'soil':material},u)
+                _, committed=compute_element_results_and_state(mesh,{'soil':material},u)
+                self.assertEqual(len(rows),9)
+                for row in rows:
+                    strain=np.array([row['eps_x'],row['eps_y'],row['eps_z'],row['gamma_xy']])
+                    np.testing.assert_allclose(strain,[.1,-.1,0,0],atol=1e-14)
+                    reference=mat.update_plane_strain_stress(material,strain)
+                    np.testing.assert_allclose([row['sigma_x'],row['sigma_y'],row['sigma_z'],row['tau_xy']],reference.stress,atol=1e-9)
+                    self.assertAlmostEqual(row['kappa'],reference.kappa,places=11)
+                if mode != 'SRI':
+                    for state in committed.values():
+                        np.testing.assert_allclose(state.plastic_strain,reference.plastic_strain,atol=1e-11)
+                        self.assertAlmostEqual(state.kappa,reference.kappa,places=11)
 
 
 if __name__ == '__main__':
